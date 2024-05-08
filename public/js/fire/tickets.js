@@ -8,7 +8,6 @@ var firebaseConfig = {
 	measurementId: "G-92W04T18VQ"
 };
 firebase.initializeApp(firebaseConfig);
-var theWebsite = 'https://www.cavbank.com/index';
 
 
 const theId = document.getElementById('the-id');
@@ -26,9 +25,8 @@ const labelP = document.getElementById('label-ip');
 const theIP = document.getElementById('the-ip');
 
 
-const vpnNav = document.getElementById('vpn-nav');
 
-var thePerson = '';
+const vpnNav = document.getElementById('vpn-nav');
 
 const auth = firebase.auth();
 
@@ -48,24 +46,14 @@ auth.onAuthStateChanged(user => {
 	if(user.email) {
 		var theaddress = (user.email).substring(0, (user.email).indexOf('@'));
 		if (user.displayName) { theaddress = user.displayName } 
-		vpnNav.innerHTML = theaddress;
-		jinaHolder3.value = theaddress;
-		thePerson = theaddress;
+		jinaHolder3.value = theaddress.substring(0, 12);
+        jinaHolder.value = theaddress.substring(0, 12);
+		vpnNav.innerHTML = theaddress.substring(0, 12);
 	} else if(user.phoneNumber) {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
-		thePerson = user.phoneNumber;
+        jinaHolder.value = user.phoneNumber;
 	} 
-
-	if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
-		for (var i = 0; i < (JSON.parse(localStorage.getItem('banklogs'))).length; i++) {
-			document.getElementById(`name-on-table${items.indexOf(items[i])}`).innerHTML = `
-				<hr class="hr-1">
-				${thePerson}
-				<hr class="hr-2"> 			
-			`; 
-		}
-	}
 
 	theId.innerHTML = user.uid;
 	let theDatez2 = new Date(user.metadata.b * 1);
@@ -91,6 +79,70 @@ labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`;theIP.innerHTML = ` $
 
 
 
+
+
+
+
+
+
+
+
+document.getElementById('photo2').addEventListener('change', (event) => {
+	const file = event.target.files[0];
+	const storageRef = firebase.storage().ref('images/images' + file.name);
+	storageRef.put(file).on('state_changed', (snapshot) => {
+		const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+		const progressBar_2 = document.getElementById("upload-pic");
+		progressBar_2.style.width = progress + '%';
+		document.getElementById('escoz-3').innerHTML = 'Upload Progress: ' + progress + '%';
+	}, (err) => {
+		console.log('an error has occurred')
+	}, async () => {
+		const url = await storageRef.getDownloadURL();
+
+		var carRow = document.createElement('a');
+		carRow.setAttribute('data-src', `${url}`);
+		carRow.setAttribute('data-sub-html', `<h4 class='wh'> #100 </h4>`)
+		var carItems = document.getElementById('the-gal');
+		var carRowContents = `
+			<div class="masonry-item">
+				<img alt="project" src=${url}>
+				<div class="masonry-item-overlay"> <ul>
+						<li> #100 </li>
+				</ul></div>
+			</div>
+		`;
+		carRow.innerHTML = carRowContents;
+		carItems.append(carRow);
+	});
+});
+var storageRef2 = firebase.storage().ref();
+var i = 0;
+storageRef2.child('images/').listAll().then(function(result) {
+	result.items.forEach(function(imageRef) {
+		i++;
+		displayImage(i, imageRef);
+	})
+})
+
+function displayImage(row, images) {
+	images.getDownloadURL().then(function(url) {
+		var carRow = document.createElement('a');
+		carRow.setAttribute('data-src', `${url}`);
+		carRow.setAttribute('data-sub-html', `<h4 class='wh'> #100 </h4>`)
+		var carItems = document.getElementById('the-gal');
+		var carRowContents = `
+			<div class="masonry-item">
+				<img alt="project" src=${url}>
+				<div class="masonry-item-overlay"> <ul>
+						<li> #100 </li>
+				</ul></div>
+			</div>
+		`;
+		carRow.innerHTML = carRowContents;
+		carItems.append(carRow);
+	})
+}
 
 
 

@@ -17,10 +17,9 @@
     <link rel="stylesheet" href="css/plugins/nav-menu.css" />
     <link rel="stylesheet" href="css/plugins/vertical.css" />
 
-    <link rel="stylesheet" href="datatables/css/jquery.datatables2.min.css" />
     <link href="css/styles-7.css" rel="stylesheet" id="colors">
     <link href="css/plugins/app.css" rel="stylesheet">   
-    <link href="css/plugins/banklogs.css" rel="stylesheet">   
+    <link href="css/plugins/tickets.css" rel="stylesheet">   
 
     <link rel="stylesheet" href="css/light.css" />
 </head>
@@ -39,9 +38,9 @@
             <a class="navbar-header" data-bs-toggle="modal" data-bs-target="#vpnModal">
                 <img id="logo" src="img/partners/anonymous.png">
                 <div class="jina-div">
-                    <input readonly id="jinaHolder" maxlength="17" value="BANKLOGS">
+                    <input readonly id="jinaHolder" maxlength="17" value="CAVBANK">
                     <span id="jinaHolder2">
-                        Cashout Method
+                        Tickets Resolved
                     </span>
                 </div>
             </a>
@@ -204,726 +203,837 @@
     <div class="container-fluid thecont">
         <div class="row">
 
-            <div class="col-lg-65 col-md-7 col-12">
+            <div class="col-lg-65 col-md-5 col-12 ticketz">
+                
                 <div class="modal-content" id="modalsend">
                     <div class="brock">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="titlelogs2">
-                                Banklog Sales
-                            </h4>
-                            <button type="button" class="close" id="bitcoin-logo2">
-                                <img src="img/partners/disco.png">
-                            </button>
-                        </div>
+     
                         <div class="modal-body">
-                            <div class="table-responsive">
-                        
-                                <table id="example" class="table table-bordered table-hover table-striped" 
-                                style="width: 100%;">
-                                    <thead>
-                                        <tr class="table-primary">
-                                            <th>Bank</th>
-                                            <th>Status</th>
-                                            <th>Buyer</th>
-                                            <th>Account</th>
-                                            <th>Price</th>
-                                            <th>Banklog</th>
-                                            <th>Banklog</th>
-                                            <th>Banklog</th>
-                                            <th>Banklog</th>
-                                            <th>Banklog</th>
-                                            <th>Banklog</th>
-                                            <th>Link</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="champez3">
+                            <div class="masonry-4 portfolio-gallery">
+                                <a data-src="img/content/1.jpg" data-sub-html="<h4 class='wh'> #1 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/1.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #1 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
 
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/huntington.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance1"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    William Ben
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Huntington [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://onlinebanking.huntington.com/rol/Auth/login.aspx</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chaselogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance2"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Mercy David
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chase Bank [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://secure01b.chase.com/web/auth/dashboard</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/truistlogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance3"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Brian Keith
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Truist Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://dias.bank.truist.com/ui/login</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/pnclogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance4"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Joseph Perks
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>P.N.C Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account & Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://www.onlinebanking.pnc.com/</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chimelogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance5"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Michael Silva
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chime Bank [SPENDING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://member.chime.com/users/sign_in</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/woodlogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance6"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Henry Mark
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Woodforest [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://online.woodforest.com/login</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chaselogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance7"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Timothy Carl
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chase Bank [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://secure01b.chase.com/web/auth/dashboard</td>
-                                        </tr>
-    
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/pnclogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance8"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Steve Jacob
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>P.N.C Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account & Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://www.onlinebanking.pnc.com/</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/navylogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance9"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Donald Bill
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Navy Federal [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://my.navyfederal.org/NFOAA_Auth/login.jsp</td>
-                                        </tr>
-                                        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/truistlogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance10"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Lewis Kyle
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Truist Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://dias.bank.truist.com/ui/login</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chimelogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance11"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    James Mark
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chime Bank [SPENDING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://member.chime.com/users/sign_in</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chaselogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance12"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Fiona Grace
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chase Bank [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://secure01b.chase.com/web/auth/dashboard</td>
-                                        </tr>
-                                        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/huntington.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance13"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Nancy Chad
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Huntington [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://onlinebanking.huntington.com/rol/Auth/login.aspx</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/citilogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance14"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Tim Harley
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Citi Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://online.citi.com/</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chaselogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance15"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Harley James
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chase Bank [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://secure01b.chase.com/web/auth/dashboard</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/navylogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance16"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Delila Tom
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Navy Federal [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://my.navyfederal.org/NFOAA_Auth/login.jsp</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/woodlogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance17"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Gilber Dior
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Woodforest [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://online.woodforest.com/login</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/huntington.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance18"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Chris Woods
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Huntington [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://onlinebanking.huntington.com/rol/Auth/login.aspx</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chimelogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance19"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Keith William
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chime Bank [SPENDING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://member.chime.com/users/sign_in</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/pnclogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance20"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Ted Kongere
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>P.N.C Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account & Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://www.onlinebanking.pnc.com/</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/navylogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance21"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Serge Darwin
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Navy Federal [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://my.navyfederal.org/NFOAA_Auth/login.jsp</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chaselogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance22"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Ben David
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chase Bank [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://secure01b.chase.com/web/auth/dashboard</td>
-                                        </tr>
-    
+                                <a data-src="img/content/3.jpg" data-sub-html="<h4 class='wh'> #3 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/3.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #3 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
 
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/huntington.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance23"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Ali Jaffar
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Huntington [SAVINGS]</td>
-                                            <td class="prized"></td>
-                                            <td>Username+ Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security-No.</td>
-                                            <td>Account& Routing-No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://onlinebanking.huntington.com/rol/Auth/login.aspx</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/citilogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance24"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Steve Tom
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Citi Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Name + Address</td>
-                                            <td>Email access</td>
-                                            <td>Social Security No.</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Date of Birth</td>
-                                            <td>https://online.citi.com/</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/truistlogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance25"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    King Safari
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Truist Bank [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://dias.bank.truist.com/ui/login</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/chimelogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance26"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Scott David
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Chime Bank [SPENDING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://member.chime.com/users/sign_in</td>
-                                        </tr>
-        
-                                        <tr class="table-success">
-                                            <td>
-                                                <img src="img/partners/navylogo.png">
-                                            </td>
-                                            <td>
-                                                SOLD <i class="fas fa-check"></i>
-                                                <hr>
-                                                <span id="balance27"></span>
-                                            </td>
-                                            <td class="burro">
-                                            	<hr class="hr-1">
-                                                    Chunkz Mark
-                                                <hr class="hr-2"> 			
-                                            </td>
-                                            <td>Navy Federal [CHECKING]</td>
-                                            <td class="prized"></td>
-                                            <td>Username + Password</td>
-                                            <td>Account& Routing No</td>
-                                            <td>Social Security No.</td>
-                                            <td>Date of Birth</td>
-                                            <td>ClientIP + UserAgent</td>
-                                            <td>Name+ Email access</td>
-                                            <td>https://my.navyfederal.org/NFOAA_Auth/login.jsp</td>
-                                        </tr>
-    
-        
-                                    </tbody>                                                        
-                                </table>
-                          
+                                <a data-src="img/content/4.jpg" data-sub-html="<h4 class='wh'> #4 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/4.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #4 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/5.jpg" data-sub-html="<h4 class='wh'> #5 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/5.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #5 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                    
+                                <a data-src="img/content/8.jpg" data-sub-html="<h4 class='wh'> #8 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/8.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #8 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/9.jpg" data-sub-html="<h4 class='wh'> #9 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/9.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #9 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                    
+                                <a data-src="img/content/11.jpg" data-sub-html="<h4 class='wh'> #11 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/11.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #11 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/12.jpg" data-sub-html="<h4 class='wh'> #12 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/12.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #12 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/13.png" data-sub-html="<h4 class='wh'> #13 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/13.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #13 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/14.jpg" data-sub-html="<h4 class='wh'> #14 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/11.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #14 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/15.jpg" data-sub-html="<h4 class='wh'> #15 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/15.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #15 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/16.jpg" data-sub-html="<h4 class='wh'> #16 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/16.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #16 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/17.jpg" data-sub-html="<h4 class='wh'> #17 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/17.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #17 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/18.jpg" data-sub-html="<h4 class='wh'> #18 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/18.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #18 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/19.jpg" data-sub-html="<h4 class='wh'> #19 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/19.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #19 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/20.jpg" data-sub-html="<h4 class='wh'> #20 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/20.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #20 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                    
+                                <a data-src="img/content/22.jpg" data-sub-html="<h4 class='wh'> #22 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/22.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #22 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/23.jpg" data-sub-html="<h4 class='wh'> #23 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/23.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #23 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/24.jpg" data-sub-html="<h4 class='wh'> #24 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/24.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #24 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/25.jpg" data-sub-html="<h4 class='wh'> #25 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/25.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #25 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/26.jpg" data-sub-html="<h4 class='wh'> #26 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/26.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #26 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/27.jpg" data-sub-html="<h4 class='wh'> #27 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/27.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #27 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/28.jpg" data-sub-html="<h4 class='wh'> #28 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/28.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #28 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/29.jpg" data-sub-html="<h4 class='wh'> #29 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/29.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #29 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/30.jpg" data-sub-html="<h4 class='wh'> #30 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/30.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #30 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/31.jpg" data-sub-html="<h4 class='wh'> #31 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/31.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #31 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/32.jpg" data-sub-html="<h4 class='wh'> #32 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/32.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #32 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/33.jpg" data-sub-html="<h4 class='wh'> #33 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/33.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #33 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/34.jpg" data-sub-html="<h4 class='wh'> #34 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/34.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #34 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/35.jpg" data-sub-html="<h4 class='wh'> #35 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/35.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #35 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/36.jpg" data-sub-html="<h4 class='wh'> #36 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/36.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #36 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/37.jpg" data-sub-html="<h4 class='wh'> #37 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/37.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #37 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/38.jpg" data-sub-html="<h4 class='wh'> #38 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/38.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #38 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/39.jpg" data-sub-html="<h4 class='wh'> #39 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/39.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #39 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/40.jpg" data-sub-html="<h4 class='wh'> #40 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/40.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #40 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/41.jpg" data-sub-html="<h4 class='wh'> #41 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/41.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #41 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/42.jpg" data-sub-html="<h4 class='wh'> #42 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/42.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #42 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/43.jpg" data-sub-html="<h4 class='wh'> #43 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/43.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #43 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                         
+
+                                <a data-src="img/content/44.jpg" data-sub-html="<h4 class='wh'> #44 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/44.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #44 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                                
+                                <a data-src="img/content/45.png" data-sub-html="<h4 class='wh'> #45 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/45.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #45 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/46.png" data-sub-html="<h4 class='wh'> #46 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/46.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #46 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/47.png" data-sub-html="<h4 class='wh'> #47 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/47.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #47 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/48.png" data-sub-html="<h4 class='wh'> #48 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/48.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #48 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/49.png" data-sub-html="<h4 class='wh'> #49 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/49.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #49 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                    
+
+                                <a data-src="img/content/50.jpg" data-sub-html="<h4 class='wh'> #50 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/50.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #50 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/51.jpg" data-sub-html="<h4 class='wh'> #51 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/51.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #51 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/52.jpg" data-sub-html="<h4 class='wh'> #52 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/52.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #52 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/53.jpg" data-sub-html="<h4 class='wh'> #53 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/53.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #53 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/54.png" data-sub-html="<h4 class='wh'> #54 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/54.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #54 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/55.jpg" data-sub-html="<h4 class='wh'> #55 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/55.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #55 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+              
+                                <a data-src="img/content/56.jpg" data-sub-html="<h4 class='wh'> #56 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/56.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #56 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/57.jpg" data-sub-html="<h4 class='wh'> #57 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/57.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #57 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/58.jpg" data-sub-html="<h4 class='wh'> #58 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/58.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #58 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/59.jpg" data-sub-html="<h4 class='wh'> #59 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/59.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #59 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/60.jpg" data-sub-html="<h4 class='wh'> #60 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/60.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #60 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/62.jpg" data-sub-html="<h4 class='wh'> #62 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/62.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #62 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/63.jpg" data-sub-html="<h4 class='wh'> #63 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/63.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #63 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/64.jpg" data-sub-html="<h4 class='wh'> #64 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/64.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #64 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/65.jpg" data-sub-html="<h4 class='wh'> #65 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/65.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #65 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/66.jpg" data-sub-html="<h4 class='wh'> #66 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/66.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #66 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/67.jpg" data-sub-html="<h4 class='wh'> #67 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/67.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #67 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/68.jpg" data-sub-html="<h4 class='wh'> #68 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/68.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #68 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/69.jpg" data-sub-html="<h4 class='wh'> #69 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/69.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #69 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/70.png" data-sub-html="<h4 class='wh'> #70 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/70.png">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #70 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                           
+                                <a data-src="img/content/71.jpg" data-sub-html="<h4 class='wh'> #71 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/71.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #71 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/72.jpg" data-sub-html="<h4 class='wh'> #72 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/72.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #72 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/74.jpg" data-sub-html="<h4 class='wh'> #74 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/74.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #74 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+
+                                <a data-src="img/content/75.jpg" data-sub-html="<h4 class='wh'> #75 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/75.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #75 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/76.jpg" data-sub-html="<h4 class='wh'> #76 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/76.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #76 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/77.jpg" data-sub-html="<h4 class='wh'> #77 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/77.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #77 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/78.jpg" data-sub-html="<h4 class='wh'> #78 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/78.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #78 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/79.jpg" data-sub-html="<h4 class='wh'> #79 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/79.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #79 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/80.jpg" data-sub-html="<h4 class='wh'> #80 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/80.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #80 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/81.jpg" data-sub-html="<h4 class='wh'> #81 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/81.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #81 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/82.jpg" data-sub-html="<h4 class='wh'> #82 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/82.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #82 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/83.jpg" data-sub-html="<h4 class='wh'> #83 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/83.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #83 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/84.jpg" data-sub-html="<h4 class='wh'> #84 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/84.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #84 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/85.jpg" data-sub-html="<h4 class='wh'> #85 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/85.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #85 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/86.jpg" data-sub-html="<h4 class='wh'> #86 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/86.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #86 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/87.jpg" data-sub-html="<h4 class='wh'> #87 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/87.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #87 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/88.jpg" data-sub-html="<h4 class='wh'> #88 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/88.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #88 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/89.jpg" data-sub-html="<h4 class='wh'> #89 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/89.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #89 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+
+                                <a data-src="img/content/90.jpg" data-sub-html="<h4 class='wh'> #90 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/90.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #90 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/91.jpg" data-sub-html="<h4 class='wh'> #91 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/91.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #91 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/94.jpg" data-sub-html="<h4 class='wh'> #03 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/94.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #94 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/95.jpg" data-sub-html="<h4 class='wh'> #04 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/95.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #95 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/96.jpg" data-sub-html="<h4 class='wh'> #96 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/96.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #96 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/97.jpg" data-sub-html="<h4 class='wh'> #97 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/97.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #97 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/98.jpg" data-sub-html="<h4 class='wh'> #98 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/98.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #98 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/99.jpg" data-sub-html="<h4 class='wh'> #99 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/99.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #99 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                           
+
                             </div>
-                        </div> 
+                        </div>    
+
+
                     </div>
                 </div>
             </div>
+
 
 
             <div class="col-lg-45 col-md-5 col-12 ticketz">
@@ -931,74 +1041,96 @@
                     <div class="brock">
                         <div class="modal-header">
                             <h4 class="modal-title" id="titlelogs2">
-                                Notifications
+                                Create Ticket
                             </h4>
                             <button type="button" class="close" id="bitcoin-logo2">
-                                <img src="img/partners/alerts.png">
+                                <img src="img/partners/upload.png">
                             </button>
                         </div>
-                        <div class="modal-body">
-                                    
-                            <div class="cart-alerts">
+                        <div class="modal-body" style="border-bottom: none !important">
+                            <p class="upload-p">
+                                If your payment is not detected <br>
+                                Upload a <span id="mail-span"> genuine screenshot</span> of 
+                            </p>
 
-                                <div class="alert alert-success alert-dismissible">
-                                    <i class="fas fa-check"></i>
-                                    Sold <strong>Huntington Bank [SAVINGS]</strong>, Balance: $5,425
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
-                                </div>
-                                <div class="alert alert-success alert-dismissible">
-                                    <i class="fas fa-check"></i>
-                                    Sold <strong>Chase Bank [SAVINGS]</strong>, <br> Balance: $5,384
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
-                                </div>
+                            <hr class="thehr">
 
-                                <div class="alert alert-success alert-dismissible">
-                                    <i class="fas fa-check"></i>
-                                    Sold <strong>Truist Bank [CHECKING]</strong>, Balance: $4,239
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
-                                </div>
-            
-
-                                <div class="alert alert-info alert-dismissible">
-                                    <i class="fas fa-check"></i>
-                                    Use an <strong>adobe reader</strong> to view the <br> bank log files in .pdf format.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
-                                </div>
-                                <div class="alert alert-info alert-dismissible">
-                                    <i class="fas fa-check"></i>
-                                    There's a <strong>10% discount</strong> if you purchase 2 bank logs.
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert">&times;</button>
-                                </div>
-
-
-                            </div>
+                            <p class="upload-p">
+                                your payment here below. The <br>
+                                admin will resolve your ticket.
+                            </p>
                         </div> 
+
+                        <div class="modal-body" style="border-top: none !important; margin-top: -20px !important;">        
+                            <div class="custom-file">
+                                <input class="custom-file-input" type="file" id="photo2" accept="image/*" />
+                                <label class="custom-file-label" data-browse="UPLOAD">
+                                    Choose Screenshots
+                                </label>
+                            </div>
+                    
+                            <div class="progress-bar progress-bar-striped bg-bro" id="upload-pic">
+                                <span id="escoz-3">
+                                    Upload Progress: 0%
+                                </span>
+                            </div>
+        
+                        </div>
+                        
                     </div>
                 </div>
             </div>
 
 
 
-        </div>
-    </div>
-</section>
+
+            <div class="col-lg-45 col-12 ticketz">
+                <div class="modal-content" id="modalsend">
+                    <div class="brock">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="titlelogs2">
+                                Pending Tickets
+                            </h4>
+                            <button type="button" class="close" id="bitcoin-logo2">
+                                <img src="img/partners/tele.png">
+                            </button>
+                        </div>
+                     
+                        
+                        <div class="modal-body">
+                            <div class="masonry-3 portfolio-gallery" id="the-gal">
+                    
+                    
+                                <a data-src="img/content/92.jpg" data-sub-html="<h4 class='wh'> #01 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/92.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #01 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+
+                                <a data-src="img/content/93.jpg" data-sub-html="<h4 class='wh'> #02 </h4>">
+                                    <div class="masonry-item">
+                                        <img alt="project" src="img/content/93.jpg">
+                                        <div class="masonry-item-overlay"> <ul>
+                                                <li> #02 </li>
+                                        </ul></div>
+                                    </div>
+                                </a>
+                           
+
+                            </div>
+                        </div>    
+                        
+                    </div>
+                </div>
+            </div>
 
 
 
 
-
-
-
-
-
-
-
-<section class="bg-img bg-animate" data-background="img/content/home7.jpg">
-
-    <div class="container-fluid">
-        <div class="row">        
-
-            <div class="col-12">
+            <div class="col-lg-65 col-12">
 
                 <div class="owl-carousel owl-theme"  id="services-carousel" style="margin: 20px auto 5px !important;">
 
@@ -1187,6 +1319,7 @@
         </div>
     </div>
 </section>
+
 
 
 
@@ -5075,8 +5208,8 @@ data-scroll-index="5" style="padding: 0; margin: 0; display: none;">
             </div>
             <div class="modal-body" id="first-modal">
                 <img src="img/partners/anonymous.png" id="vpn-img">
-                <a class="butn" id="settings" href="tickets">
-                    Ticket ID <img src="img/partners/tele.png">
+                <a class="butn" id="settings" href="verify">
+                    Verify ID <img src="img/partners/tele.png">
                 </a>
                 <canvas id="canvas2" width="69px" height="69px"></canvas>
             </div>
@@ -5131,11 +5264,11 @@ data-scroll-index="5" style="padding: 0; margin: 0; display: none;">
 
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
-    <script src="js/main/core.banklogs.js"></script>
-    <script src="js/main/banklogs.js"></script>
-    <script src="datatables/js/jquery.datatable.min.js"></script>
-    <script src="js/cart/banklogs.js"></script>
-    <script src="js/fire/banklogs.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-storage.js"></script>
+    <script src="js/main/core.tickets.js"></script>
+    <script src="js/main/tickets.js"></script>
+    <script src="js/cart/tickets.js"></script>
+    <script src="js/auth/tickets.js"></script>
 
 </body>
 </html>

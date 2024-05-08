@@ -65,7 +65,7 @@
                     margin: 30
                 },
                 1200: {
-                    items: 7,
+                    items: 5,
                     margin: 20
                 }
             }
@@ -90,12 +90,6 @@
 
 }
 )(jQuery);
-
-$(document).ready(function() {
-    "use strict";
-    $('#example').dataTable();    
-});
-
 
 ! function(g) {
     "use strict";

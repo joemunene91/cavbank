@@ -20,7 +20,6 @@
 
 
 
-
 var firebaseConfig = {
 	apiKey: "AIzaSyAPH-5BllVWZmqV3Qa1G8YpYywr6rf5Lko",
 	authDomain: "cavbank--com.firebaseapp.com",
@@ -76,7 +75,7 @@ const btnSee = document.getElementsByClassName('btn-see')[0];
 const signImg = document.getElementById('sign-img');
 
 
-const icloudID = document.getElementsByClassName('icloud-id')[0];
+const googleID = document.getElementsByClassName('google-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
 
@@ -108,7 +107,7 @@ phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
 signGoogle.addEventListener('click', googleShow);
 
-icloudID.addEventListener('click', icloudShow);
+googleID.addEventListener('click', googleShow);
 phoneID.addEventListener('click', phoneShow);
 yahooID.addEventListener('click', yahooShow);
 
@@ -138,16 +137,9 @@ function emailShow() {
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
 	signUp.innerHTML = `Verify Now <img src="img/partners/emails.png">`;
-
-	if (window.innerWidth < 1092) {
-		mailField.value = '@gmail.com';
-		mailField.style.letterSpacing = '1.5px';
-		mailField.style.textAlign = 'right';
-	} else {
-		mailField.value = '';
-		mailField.style.textAlign = 'center';
-		mailField.setAttribute('placeholder', 'Enter your Email...');
-	}
+	mailField.value = '';
+	mailField.style.textAlign = 'center';
+	mailField.setAttribute('placeholder', 'Enter your Email...');
 }
 
 function googleShow() {
@@ -161,19 +153,6 @@ function googleShow() {
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
 	signUp.innerHTML = `Verify Now <img src="img/partners/google.png">`
-}
-
-function icloudShow() {
-	inType.innerHTML = 'ICLOUD LOGIN';
-	save1.innerHTML = ` A <span>link</span> will be sent to your <br> icloud inbox. `;
-	save2.innerHTML = ` Use the link to login here <br> on <span>cavbank.com</span>. `;
-
-	mailField.setAttribute('type', 'email'); 
-	theFlag7.style.display = 'none'; 
-	mailField.value = '@icloud.com';
-	mailField.style.letterSpacing = '1.5px';
-	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/cloud.png">`
 }
 
 function yahooShow() {

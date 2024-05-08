@@ -64,6 +64,10 @@
         "destination": "/truist.html"
       },
       {
+        "source": "/tickets",
+        "destination": "/tickets.html"
+      },
+      {
         "source": "/wellsfargo",
         "destination": "/wellsfargo.html"
       },
@@ -136,6 +140,11 @@
       {
         "source": "/truist.html",
         "destination": "/truist",
+        "type": 301
+      },
+      {
+        "source": "/tickets.html",
+        "destination": "/tickets",
         "type": 301
       },
       {
