@@ -34,7 +34,7 @@ const auth = firebase.auth();
 
 
 auth.onAuthStateChanged(user => {
-	if(!user || user.isAnonymous) {
+	if(!user) {
 		window.location.assign('index');
 	}
 

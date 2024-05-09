@@ -20,6 +20,7 @@
 
 
 
+
 var firebaseConfig = {
 	apiKey: "AIzaSyAPH-5BllVWZmqV3Qa1G8YpYywr6rf5Lko",
 	authDomain: "cavbank--com.firebaseapp.com",
@@ -40,7 +41,7 @@ if(!localStorage.getItem('cavbank-com')) {
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
-const signGoogle = document.getElementById('signGoogle');
+const signAnony = document.getElementById('signAnony');
 
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
@@ -75,7 +76,7 @@ const btnSee = document.getElementsByClassName('btn-see')[0];
 const signImg = document.getElementById('sign-img');
 
 
-const googleID = document.getElementsByClassName('google-id')[0];
+const icloudID = document.getElementsByClassName('icloud-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
 
@@ -93,10 +94,10 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent(); $('#emailModal').modal('show');
 		} else if(!user.email && user.phoneNumber) {
 			emailAbsent(); $('#emailModal').modal('show');
-		} 
-	} else {
-		auth.signInAnonymously();
-	}
+		} else if(user.isAnonymous) {
+			anonPresent(); $('#vpnModal').modal('show');
+		}
+	} 
 });
 
 fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
@@ -105,9 +106,8 @@ fetch('https://ipapi.co/json/').then(function(response) { return response.json()
 
 phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
-signGoogle.addEventListener('click', googleShow);
 
-googleID.addEventListener('click', googleShow);
+icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
 yahooID.addEventListener('click', yahooShow);
 
@@ -128,6 +128,23 @@ function phoneShow() {
 	});
 }
 
+const signInAnony = () => {
+	auth.signInAnonymously().then(() => {
+		$('#vpnModal').modal('show');
+		anonPresent();		
+	}).catch(error => {
+		var shortCutFunction = 'success';
+		var msg = `${error.message}`;
+		toastr.options =  {
+			closeButton: true, debug: false, newestOnTop: true, progressBar: true,
+			positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null
+		};
+		var $toast = toastr[shortCutFunction](msg);
+		$toastlast = $toast;
+	});
+};
+signAnony.addEventListener("click", signInAnony);
+
 
 function emailShow() {
 	inType.innerHTML = 'EMAIL LOGIN';
@@ -137,22 +154,23 @@ function emailShow() {
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
 	signUp.innerHTML = `Verify Now <img src="img/partners/emails.png">`;
-	mailField.value = '';
-	mailField.style.textAlign = 'center';
-	mailField.setAttribute('placeholder', 'Enter your Email...');
+
+	mailField.value = '@gmail.com';
+	mailField.style.letterSpacing = '1.5px';
+	mailField.style.textAlign = 'right';
 }
 
-function googleShow() {
-	inType.innerHTML = 'GOOGLE LOGIN';
-	save1.innerHTML = ` A <span>link</span> will be sent to your <br> gmail inbox. `;
+function icloudShow() {
+	inType.innerHTML = 'ICLOUD LOGIN';
+	save1.innerHTML = ` A <span>link</span> will be sent to your <br> icloud inbox. `;
 	save2.innerHTML = ` Use the link to login here <br> on <span>cavbank.com</span>. `;
 
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
-	mailField.value = '@gmail.com';
+	mailField.value = '@icloud.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/google.png">`
+	signUp.innerHTML = `Verify Now <img src="img/partners/cloud.png">`
 }
 
 function yahooShow() {
@@ -210,6 +228,21 @@ function noneAbsent() {
 		vpnImg.setAttribute("src", auth.currentUser.photoURL); 
 		vpnImg.classList.add('logo-50')
 	} 
+}
+
+function anonPresent() {
+	theId.innerHTML = auth.currentUser.uid;
+	let theDatez2 = new Date(auth.currentUser.metadata.b * 1); let theDatez = theDatez2.toString();
+	let therealDate = theDatez.substring(theDatez.indexOf('(') + 1).replace(' Time)', '');
+	theDate.innerHTML = theDatez.replace('2023', '').split('(')[0];
+	labelDate.innerHTML = `Time ID: (${therealDate})`;
+
+	fetch('https://ipapi.co/json/').then(function(response) {return response.json()}).then(function(data) {
+		labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
+		theIP.innerHTML = ` ${data.region},  ${data.org}.`;
+	});
+
+	jinaHolder.value = 'Anonymous';
 }
 
 function emailAbsent() {

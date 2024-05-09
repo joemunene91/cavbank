@@ -32,7 +32,7 @@ const auth = firebase.auth();
 
 
 auth.onAuthStateChanged(user => {
-	if(!user || user.isAnonymous) {
+	if(!user) {
 		window.location.assign('index');
 	}
 
@@ -53,7 +53,11 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
         jinaHolder.value = user.phoneNumber;
-	} 
+	} else if(user.isAnonymous) {
+		jinaHolder3.value = 'Anonymous';
+		vpnNav.innerHTML = 'Anonymous';
+        jinaHolder.value = 'Anonymous';
+	}
 
 	theId.innerHTML = user.uid;
 	let theDatez2 = new Date(user.metadata.b * 1);
