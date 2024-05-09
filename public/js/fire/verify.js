@@ -88,13 +88,17 @@ auth.onAuthStateChanged(user => {
 			wildPa.innerHTML = `<span>${themail}</span>`;
 		}
 
-		signUp.addEventListener('click', sendEmail);
-		emailShow();
+		if(user.phoneNumber) { 
+			theaddress = user.phoneNumber;
+			signUp.addEventListener('click', sendEmail);
+			emailShow();
+		} else{
+			phoneAbsent(); 
+		}
 
 		jinaHolder3.value = theaddress;
 		jinaHolder.value = theaddress;
 		jinaHolder2.innerHTML = themail;
-	
 	} else if(user.phoneNumber) {
 		jinaHolder3.value = user.phoneNumber;
 		jinaHolder.value = user.phoneNumber;
@@ -104,7 +108,16 @@ auth.onAuthStateChanged(user => {
 		emailAbsent();
 		wouldPa.innerHTML = `Bank log files will be sent <br> to your phone number.`;
 		wildPa.innerHTML = `<span style="letter-spacing: 1px !important">${user.phoneNumber}</span>.`;
-	} 
+	} else if(user.isAnonymous) {
+		jinaHolder3.value = 'Anonymous';
+		jinaHolder.value = 'Anonymous';
+		vpnNav.innerHTML = 'Anonymous';
+		jinaHolder2.innerHTML = 'www.darkweb.ink';
+
+		anonPresent();
+		wouldPa.innerHTML = `Bank log files will be saved <br> as a PDF file on this: `;
+		wildPa.innerHTML = `<span style="letter-spacing: 0.5px !important">${theDevicez}</span>.`;
+	}
 
 	if(user.uid){
 		theId.innerHTML = user.uid;
@@ -117,6 +130,7 @@ auth.onAuthStateChanged(user => {
 });
 
 
+
 function sendEmail() {
 	auth.currentUser.sendEmailVerification();
 	var shortCutFunction = 'success';
@@ -125,7 +139,7 @@ function sendEmail() {
 	toastr.options = {closeButton: true,debug: false,newestOnTop: true,progressBar: true,
 	positionClass: 'toast-top-full-width',preventDuplicates: true,onclick: null};
 	var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
-	setTimeout(() => {$('#emailModal').modal('hide'); }, 3000);
+	setTimeout(() => {$('#emailModal').modal('hide');$('#profileModal').modal('show'); }, 3000);
 }
 
 function emailShow() {
@@ -137,7 +151,8 @@ function emailShow() {
 }
 
 fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
-labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`;theIP.innerHTML = ` ${data.region},  ${data.org}.`;
+	labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`;
+	theIP.innerHTML = ` ${data.region},  ${data.org}.`;
 });
 
 window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size': 'invisible'});
@@ -155,18 +170,23 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
  		const theUser = auth.currentUser;
 
-
-		theUser.linkWithCredential(credential).then(() => {
-			theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
-				window.location.assign('verify');
+		if(theUser.isAnonymous) {
+			auth.signInWithCredential(credential).then(() => { $('#verifyModal').modal('hide'); emailAbsent() })
+		} else {
+			theUser.linkWithCredential(credential).then(() => {
+				theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
+					window.location.assign('verify');
+				});
 			});
-		});
+		}
 	}
 
 	if(email.includes('@')) {
-		if(email.includes('@gmail.com') || email.includes('@GMAIL.COM')) { signInWithGoogle() } 
-		else if(email.includes('@yahoo.com') || email.includes('@YAHOO.COM')) { signInWithYahoo() } 
-		else {
+		if(email.includes('@gmail.com') || email.includes('@GMAIL.COM')) {
+			if(email.length > 10) { signInWithGoogle() }
+		} else if(email.includes('@yahoo.com') || email.includes('@YAHOO.COM')) {
+			if(email.length > 10) { signInWithYahoo() }
+		} else {
 			auth.sendSignInLinkToEmail(email, actionCodeSettings).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `A verification link has been sent to:   <hr class="to-hr hr15-bot">${email} 
@@ -196,29 +216,36 @@ signUp.addEventListener('click', signUpFunction);
 theForm.addEventListener('submit', signUpFunction);
 theLifes.addEventListener('click', mailField.focus());
 
-
 const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
  	const theUser = auth.currentUser;
 
-	theUser.linkWithPopup(yahooProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(yahooProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 	const theUser = auth.currentUser;
 
-	theUser.linkWithPopup(googleProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(googleProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 function emailAbsent() {
@@ -231,6 +258,36 @@ function emailAbsent() {
 	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
 }
+
+function anonPresent() {
+	inType.innerHTML = `Burner Mail`;
+	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
+	Anonymous ID</span> `;
+	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
+	
+	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
+	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
+	mailField.style.textAlign = 'right';
+}
+
+function phoneAbsent() {
+	save1.innerHTML = ` You have signed in as: <br> <span id="uidy">${auth.currentUser.email}</span> `;
+	save2.innerHTML = ` Use a burner <span id="mail-span">phone number</span> <br> to complete your login.`;
+
+	mailField.setAttribute('type', 'tel'); mailField.style.textAlign = 'left'; 
+	mailField.setAttribute('pattern', '[+]{1}[0-9]{11,14}');
+	mailField.value = '+123'; mailField.style.letterSpacing = '3px';
+	theFlag7.src = `img/partners/phone.png`; theFlag7.style.display = 'block';
+	fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
+		mailField.value = data.country_calling_code; 
+		theFlag7.src = `https://flagcdn.com/144x108/${(data.country_code).toLowerCase()}.png`;
+	});
+
+	if(auth.currentUser.photoURL) {signImg.setAttribute("src", auth.currentUser.photoURL) }
+	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11);} else {
+	inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11)}
+}
+
 
 
 

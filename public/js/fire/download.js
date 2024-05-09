@@ -113,7 +113,19 @@ auth.onAuthStateChanged(user => {
 			Phone: <span id="mail-span" style="letter-spacing: 1px !important">${user.phoneNumber}</span>. <br>
 			<span id="uidy">${theDevicez}</span>. 
 		`;
-	} 
+	} else if(user.isAnonymous) {
+		jinaHolder.value = 'Anonymous';
+		jinaHolder2.innerHTML = 'www.darkweb.ink';
+		jinaHolder3.value = 'Anonymous';
+		theTitle.innerHTML = 'Anonymous';
+		vpnNav.innerHTML = 'Anonymous';
+		
+		anonPresent();
+		emailP.innerHTML = `
+			Browser ID: <span id="mail-span" style="letter-spacing: 0.5px !important">${platform.name}</span>. <br>
+			<span id="uidy">${theDevicez}</span>. 
+		`;
+	}
 	
 
 	theId.innerHTML = user.uid;
@@ -125,6 +137,7 @@ auth.onAuthStateChanged(user => {
 });
 
 
+
 function sendEmail() {
 	auth.currentUser.sendEmailVerification();
 	var shortCutFunction = 'success';
@@ -133,7 +146,7 @@ function sendEmail() {
 	toastr.options = {closeButton: true,debug: false,newestOnTop: true,progressBar: true,
 	positionClass: 'toast-top-full-width',preventDuplicates: true,onclick: null};
 	var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
-	setTimeout(() => {$('#emailModal').modal('hide'); }, 3000);
+	setTimeout(() => {$('#emailModal').modal('hide');$('#profileModal').modal('show'); }, 3000);
 }
 
 function emailShow() {
@@ -145,7 +158,8 @@ function emailShow() {
 }
 
 fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
-labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`;theIP.innerHTML = ` ${data.region},  ${data.org}.`;
+	labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`;
+	theIP.innerHTML = ` ${data.region},  ${data.org}.`;
 });
 
 window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {'size': 'invisible'});
@@ -163,18 +177,23 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
  		const theUser = auth.currentUser;
 
-
-		theUser.linkWithCredential(credential).then(() => {
-			theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
-				window.location.assign('verify');
+		if(theUser.isAnonymous) {
+			auth.signInWithCredential(credential).then(() => { $('#verifyModal').modal('hide'); emailAbsent() })
+		} else {
+			theUser.linkWithCredential(credential).then(() => {
+				theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
+					window.location.assign('verify');
+				});
 			});
-		});
+		}
 	}
 
 	if(email.includes('@')) {
-		if(email.includes('@gmail.com') || email.includes('@GMAIL.COM')) { signInWithGoogle() } 
-		else if(email.includes('@yahoo.com') || email.includes('@YAHOO.COM')) { signInWithYahoo() } 
-		else {
+		if(email.includes('@gmail.com') || email.includes('@GMAIL.COM')) {
+			if(email.length > 10) { signInWithGoogle() }
+		} else if(email.includes('@yahoo.com') || email.includes('@YAHOO.COM')) {
+			if(email.length > 10) { signInWithYahoo() }
+		} else {
 			auth.sendSignInLinkToEmail(email, actionCodeSettings).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `A verification link has been sent to:   <hr class="to-hr hr15-bot">${email} 
@@ -204,35 +223,53 @@ signUp.addEventListener('click', signUpFunction);
 theForm.addEventListener('submit', signUpFunction);
 theLifes.addEventListener('click', mailField.focus());
 
-
 const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
  	const theUser = auth.currentUser;
 
-	theUser.linkWithPopup(yahooProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(yahooProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 	const theUser = auth.currentUser;
 
-	theUser.linkWithPopup(googleProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(googleProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 function emailAbsent() {
 	inType.innerHTML = `${(auth.currentUser.phoneNumber).replace('+', '')}`;
 	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
 	${auth.currentUser.phoneNumber}</span> `;
+	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
+	
+	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
+	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
+	mailField.style.textAlign = 'right';
+}
+
+function anonPresent() {
+	inType.innerHTML = `Burner Mail`;
+	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
+	Anonymous ID</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
 	
 	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 

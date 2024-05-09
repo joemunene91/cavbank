@@ -51,7 +51,11 @@ auth.onAuthStateChanged(user => {
 		jinaHolder.value = user.phoneNumber;
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
-	} 
+	} else if(user.isAnonymous) {
+		jinaHolder.value = 'Anonymous';
+		jinaHolder3.value = 'Anonymous';
+		vpnNav.innerHTML = 'Anonymous';
+	}
 
 	theId.innerHTML = user.uid;
 	let theDatez2 = new Date(user.metadata.b * 1);
