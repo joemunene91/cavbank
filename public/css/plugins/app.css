@@ -1033,8 +1033,8 @@ td {
   opacity: 1 !important;
   border-radius: 50% !important;
   border: none !important;
-  width: 64px !important;
-  height: 64px !important;
+  width: 62px !important;
+  height: 62px !important;
 }
 
 
@@ -1056,8 +1056,8 @@ td {
       height: 60px !important;
   }
   #sign-logo img {
-    width: 60px !important;
-    height: 60px !important;
+    width: 58px !important;
+    height: 58px !important;
   }
 }
 @media (max-width: 384px) {

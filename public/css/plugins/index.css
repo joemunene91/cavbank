@@ -451,7 +451,7 @@ header.scrollHeader .navbar-default {
 }
 .port h4 a {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 27.5px;
+  font-size: 26px;
   line-height: 35px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -506,7 +506,7 @@ header.scrollHeader .navbar-default {
     height: 137px;
   }
   .port h4 a {
-    font-size: 21px;
+    font-size: 20px;
     line-height: 27px !important;
   }
 }
@@ -518,7 +518,7 @@ header.scrollHeader .navbar-default {
     height: 135px;
   }
   .port h4 a {
-    font-size: 20px;
+    font-size: 19px;
     padding: 6px 0 !important;
   }
 }
@@ -530,7 +530,7 @@ header.scrollHeader .navbar-default {
     height: 129px;
   }
   .port h4 a {
-    font-size: 19px;
+    font-size: 18px;
     padding: 5px 0 !important;
   }
 }
@@ -542,7 +542,7 @@ header.scrollHeader .navbar-default {
     height: 127px;
   }
   .port h4 a {
-    font-size: 18px;
+    font-size: 17px;
     padding: 4.5px 0 !important;
   }
 }
@@ -554,7 +554,7 @@ header.scrollHeader .navbar-default {
     height: 115px;
   }
   .port h4 a {
-    font-size: 17.5px;
+    font-size: 16.5px;
     padding: 4px 0 !important;
   }
 }
