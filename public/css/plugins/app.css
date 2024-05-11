@@ -1026,15 +1026,30 @@ td {
 
 #sign-logo {
   opacity: 1 !important;
-  margin: 3px;
-  border-radius: 50% !important;
+  margin: 5px;
+  border-radius: 6px !important;
 }
 #sign-logo img {
   opacity: 1 !important;
-  border-radius: 50% !important;
+  border-radius: 6px !important;
   border: none !important;
-  width: 62px !important;
-  height: 62px !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+
+
+#ver-logo {
+  opacity: 1 !important;
+  margin: 5px;
+  border-radius: 6px !important;
+}
+#ver-logo img {
+  opacity: 1 !important;
+  border-radius: 6px !important;
+  border: none !important;
+  width: 60px !important;
+  height: 60px !important;
 }
 
 
@@ -1050,14 +1065,17 @@ td {
   #bitcoin-logo2 {
       margin: -8px 0px !important;
   }
-
   #profile-logo img {
       width: 60px !important;
       height: 60px !important;
   }
   #sign-logo img {
-    width: 58px !important;
-    height: 58px !important;
+    width: 57px !important;
+    height: 57px !important;
+  }
+  #ver-logo img {
+    width: 57px !important;
+    height: 57px !important;
   }
 }
 @media (max-width: 384px) {
@@ -1324,11 +1342,10 @@ td {
 @media (min-width: 780px) {
   #showlink,
   #showtoasts {
-      padding-left: 12px !important;
-      padding-right: 12px !important;
-      font-size: 22.5px;
-      margin: 25px 170px;
-      padding: 12px 0;
+      font-size: 22.5px !important;
+      margin: 23px 170px;
+      padding: 13px !important;
+      font-weight: 700 !important;
   }
 
   #showtoasts {
@@ -1360,7 +1377,7 @@ td {
 @media (max-width: 480px) {
   #showlink,
   #showtoasts {
-      padding: 10px !important;
+      padding: 10px 9px !important;
       font-size: 19px;
       margin: 16px !important;
   }
@@ -3057,6 +3074,18 @@ overflow: hidden !important;
 }
   
 #cont-h4::after {
+    opacity: 0.7 !important;
+}
+
+#ver-code {
+  text-transform: uppercase !important;
+  letter-spacing: 0.85px;
+  margin-left: 1px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+  
+#ver-code::after {
     opacity: 0.7 !important;
 }
 

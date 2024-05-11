@@ -82,7 +82,6 @@ auth.onAuthStateChanged(user => {
 		emailAbsent();
 	} else if(user.isAnonymous) {
 		jinaHolder3.value = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
 		anonPresent();
 	}
 

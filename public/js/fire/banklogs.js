@@ -8,8 +8,6 @@ var firebaseConfig = {
 	measurementId: "G-92W04T18VQ"
 };
 firebase.initializeApp(firebaseConfig);
-var theWebsite = 'https://www.cavbank.com/index';
-
 
 const theId = document.getElementById('the-id');
 const theDate = document.getElementById('the-date');
@@ -60,7 +58,6 @@ auth.onAuthStateChanged(user => {
 		thePerson = user.phoneNumber;
 	} else if(user.isAnonymous) {
 		jinaHolder3.value = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
 		thePerson = 'Anonymous';
 	}
 

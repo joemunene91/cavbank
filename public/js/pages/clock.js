@@ -17,7 +17,7 @@ if(localStorage.getItem('banklogs')) {
             localStorage.setItem('seconds-left', p1knoDecimalo);
             localStorage.setItem('timez-set', true);
         }
-        let width = 900;
+        let width = 600;
 
         function frame(){
 
@@ -27,7 +27,7 @@ if(localStorage.getItem('banklogs')) {
             var p1knoDecimal = Math.trunc(p1k);
             var theTime = localStorage.getItem('seconds-left');
             var timeDifference = parseFloat(p1knoDecimal) - parseFloat(theTime);
-            width = 900 - timeDifference;
+            width = 600 - timeDifference;
 
 
             if(width < 10){
@@ -35,24 +35,24 @@ if(localStorage.getItem('banklogs')) {
             } 
 
 
-            else if(width <= 300) {
+            else if(width <= 200) {
                 elemj.classList.add("bg-danger");
                 var minutes = Math.floor(width/60); var seconds = width - minutes * 60; if(seconds < 10){ seconds = '0'+seconds } 
-                elemj.style.width = (width/9) + "%"; document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
+                elemj.style.width = (width/6) + "%"; document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
             }
 
 
-            else if(width <= 600) {
+            else if(width <= 400) {
                 elemj.classList.add("bg-warning");
                 var minutes = Math.floor(width/60); var seconds = width - minutes * 60; if(seconds < 10){ seconds = '0'+seconds } 
-                elemj.style.width = (width/9) + "%"; document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
+                elemj.style.width = (width/6) + "%"; document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
             }
 
             else {
                 var minutes = Math.floor(width/60);
                 var seconds = width - minutes * 60;
                 if(seconds < 10){ seconds = '0'+seconds }
-                elemj.style.width = (width/9) + "%";
+                elemj.style.width = (width/6) + "%";
                 document.getElementById('escoz').innerHTML = `Time left: ${minutes}:${seconds}`;
             }
         }

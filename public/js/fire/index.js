@@ -33,15 +33,16 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 var theWebsite = 'https://www.cavbank.com/index';
 
-if(!localStorage.getItem('cavbank-com')) {
+if(!localStorage.getItem('banklogs-coast')) {
 	localStorage.setItem('banklogs', []);
-	localStorage.setItem('cavbank-com', true);
+	localStorage.setItem('banklogs-coast', true);
 }
 
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
 const signGoogle = document.getElementById('signGoogle');
+const signAnony = document.getElementsByClassName('anon-id')[0];
 
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
@@ -80,6 +81,8 @@ const icloudID = document.getElementsByClassName('icloud-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
 
+const vpnClose = document.getElementById('vpn-close');
+
 
 const auth = firebase.auth();
 
@@ -94,10 +97,10 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent(); $('#emailModal').modal('show');
 		} else if(!user.email && user.phoneNumber) {
 			emailAbsent(); $('#emailModal').modal('show');
-		} 
-	} else {
-		auth.signInAnonymously()
-	}
+		} else if(user.isAnonymous) {
+			anonPresent(); $('#vpnModal').modal('show');
+		}
+	} 
 });
 
 fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
@@ -108,14 +111,13 @@ phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
 signGoogle.addEventListener('click', googleShow);
 
-icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
 yahooID.addEventListener('click', yahooShow);
 
 function phoneShow() {
 	inType.innerHTML = 'PHONE LOGIN';
-	save1.innerHTML = ` A <span id="mail-span">code</span> will be sent to your <br> phone number. `;
-	save2.innerHTML = ` Use the code to login here <br> on <span id="mail-span">cavbank logs</span> `;
+	save1.innerHTML = ` A code will be sent to your <br> <span id="mail-span">phone inbox</span>. `;
+	save2.innerHTML = ` Use the code to verify your <br> login on this page. `;
 
 	mailField.setAttribute('type', 'tel'); mailField.style.textAlign = 'left'; 
 	mailField.setAttribute('pattern', '[+]{1}[0-9]{11,14}');
@@ -131,8 +133,8 @@ function phoneShow() {
 
 function emailShow() {
 	inType.innerHTML = 'EMAIL LOGIN';
-	save1.innerHTML = ` A <span id="mail-span">link</span> will be sent to your <br> email inbox. `;
-	save2.innerHTML = ` Use the link to login here <br> on <span id="mail-span">cavbank logs</span> `;
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">email inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
 
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
@@ -149,23 +151,10 @@ function emailShow() {
 	}
 }
 
-function icloudShow() {
-	inType.innerHTML = 'ICLOUD LOGIN';
-	save1.innerHTML = ` A <span id="mail-span">link</span> will be sent to your <br> icloud inbox. `;
-	save2.innerHTML = ` Use the link to login here <br> on <span id="mail-span">cavbank logs</span> `;
-
-	mailField.setAttribute('type', 'email'); 
-	theFlag7.style.display = 'none'; 
-	mailField.value = '@icloud.com';
-	mailField.style.letterSpacing = '1.5px';
-	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/cloud.png">`
-}
-
 function googleShow() {
 	inType.innerHTML = 'GOOGLE LOGIN';
-	save1.innerHTML = ` A <span id="mail-span">link</span> will be sent to your <br> gmail inbox. `;
-	save2.innerHTML = ` Use the link to login here <br> on <span id="mail-span">cavbank logs</span> `;
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">gmail inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
 
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
@@ -177,8 +166,8 @@ function googleShow() {
 
 function yahooShow() {
 	inType.innerHTML = 'YAHOO LOGIN';
-	save1.innerHTML = ` A <span id="mail-span">link</span> will be sent to your <br> yahoo inbox. `;
-	save2.innerHTML = ` Use the link to login here <br> on <span id="mail-span">cavbank logs</span> `;
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">yahoo inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
 
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
@@ -223,13 +212,28 @@ function noneAbsent() {
 		labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
 		theIP.innerHTML = ` ${data.region},  ${data.org}.`;
 	});
-
+	vpnClose.style.display = 'none';
 	jinaHolder.value = auth.currentUser.phoneNumber;
 
 	if (auth.currentUser.photoURL) { 
 		vpnImg.setAttribute("src", auth.currentUser.photoURL); 
 		vpnImg.classList.add('logo-50')
 	} 
+}
+
+function anonPresent() {
+	theId.innerHTML = auth.currentUser.uid;
+	let theDatez2 = new Date(auth.currentUser.metadata.b * 1); let theDatez = theDatez2.toString();
+	let therealDate = theDatez.substring(theDatez.indexOf('(') + 1).replace(' Time)', '');
+	theDate.innerHTML = theDatez.replace('2023', '').split('(')[0];
+	labelDate.innerHTML = `Time ID: (${therealDate})`;
+
+	fetch('https://ipapi.co/json/').then(function(response) {return response.json()}).then(function(data) {
+		labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
+		theIP.innerHTML = ` ${data.region},  ${data.org}.`;
+	});
+
+	jinaHolder.value = 'Anonymous';
 }
 
 function emailAbsent() {
@@ -365,6 +369,21 @@ const signInWithGoogle = () => {
 };
 
 
+const signInAnony = () => {
+	auth.signInAnonymously().then(() => {
+		anonPresent();
+		$('#exampleModal').modal('show');	
+	}).catch(error => {
+		var shortCutFunction = 'success';
+		var msg = `${error.message}`;
+		toastr.options =  { closeButton: true, debug: false, newestOnTop: true, progressBar: true,
+		positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
+		var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
+	});
+};
+signAnony.addEventListener("click", signInAnony);
+
+
 document.getElementById("thebodyz").oncontextmenu = function() {
 	return false
 };
@@ -457,7 +476,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 				var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
 			})
 			.then(() => {setTimeout(() => {if(window.location.href.includes('@')) {
-				window.location.assign('home') 
+				window.location.assign('index') 
 			}}, 600) })
 		} 
 	});

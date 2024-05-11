@@ -113,12 +113,11 @@ auth.onAuthStateChanged(user => {
 		wildPa.innerHTML = `<span style="letter-spacing: 1px !important">${user.phoneNumber}</span>.`;
 	} else if(user.isAnonymous) {
 		jinaHolder3.value = 'Anonymous';
-		jinaHolder.value = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
-		jinaHolder2.innerHTML = 'www.darkweb.ink';
+		jinaHolder.value = 'Verify Mail';
+		jinaHolder2.innerHTML = 'www.cavbank.com';
 
 		anonPresent();
-		wouldPa.innerHTML = `Bank log files will be saved <br> as a PDF file on this: `;
+		wouldPa.innerHTML = `Bank logins will be saved <br> as a PDF file on this: `;
 		wildPa.innerHTML = `<span style="letter-spacing: 0.5px !important">${theDevicez}</span>.`;
 	}
 

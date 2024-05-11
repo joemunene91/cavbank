@@ -56,8 +56,8 @@ const contH4 = document.getElementById('cont-h4');
 const vpnNav = document.getElementById('vpn-nav');
 
 
-if(!window.location.href.includes('vbank')){
-	if(!window.location.href.includes('5501')) {
+if(!window.location.href.includes('rkweb')){
+	if(!window.location.href.includes('5500')) {
 		window.location.assign('index')
 	}
 }
@@ -65,7 +65,7 @@ if(!window.location.href.includes('vbank')){
 if(platform.manufacturer !== null) {
 	var theDevicez = `${platform.manufacturer} ${platform.product}, ${platform.os}`;
 } else { 
-	var  theDevicez = `${platform.os} Device`
+	var  theDevicez = `${platform.os} Device`;
 }
 
 auth.onAuthStateChanged(user => {
@@ -117,11 +117,10 @@ auth.onAuthStateChanged(user => {
 			<span id="uidy">${theDevicez}</span>. 
 		`;
 	} else if(user.isAnonymous) {
-		jinaHolder.value = 'Anonymous';
-		jinaHolder2.innerHTML = 'www.darkweb.ink';
+		jinaHolder.value = 'Download PDF';
+		jinaHolder2.innerHTML = 'www.cavbank.com';
 		jinaHolder3.value = 'Anonymous';
-		theTitle.innerHTML = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
+		theTitle.innerHTML = 'Download PDF';
 		
 		anonPresent();
 		emailP.innerHTML = `

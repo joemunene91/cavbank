@@ -46,9 +46,9 @@
                         </div>
                         <ul class="dropdown-menu">
                             <li class="thegold">
-                                <img src="img/partners/cloud.png">
-                                <a class="butn gold icloud-id" data-bs-toggle="modal" data-bs-target="#emailModal">
-                                    ICLOUD - ID
+                                <img src="img/partners/anonymous.png">
+                                <a class="butn gold anon-id">
+                                    ANONYMOUS
                                 </a>
                             </li>
                             <li class="thegold">
@@ -207,6 +207,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <input readonly  id="jinaHolder3" maxlength="17" value="Home Page">
+                <button type="button" class="btn-cloze" id="vpn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="first-modal">
                 <img src="img/partners/anonymous.png" id="vpn-img">
@@ -246,7 +247,7 @@
                 </div>
                 <button type="button" class="btn-cloze btn-see" data-bs-dismiss="modal"></button>
                 <button type="button" class="close" style="display: none;" id="sign-logo">
-                    <img src="img/partners/phone.png" id="sign-img">
+                    <img src="img/partners/anonymous.png" id="sign-img">
                 </button>
             </div>
             <div class="modal-body">
@@ -271,27 +272,25 @@
     </div>   
 </div>
 
-<div class="modal fade" id="verifyModal" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade"  id="verifyModal" data-bs-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="section-heading">
-                    <h4 class="set"> VERIFY CODE </h4>
-                </div>
-                <button type="button" class="btn-cloze" data-bs-toggle="modal" data-bs-target="#emailModal"></button>
+                <div class="section-heading"> <h4 class="set" id="ver-code"> VERIFY CODE </h4> </div>
+                <button type="button" class="close" id="ver-logo" data-bs-toggle="modal" data-bs-target="#emailModal">
+                    <img src="img/partners/comm.png">
+                </button>
             </div>
             <div class="modal-body">
                 <p class="modal-p"  id="dave-1">
                     Check your phone inbox <br> and enter the <span>code</span>.
                 </p> <hr class="thehr thero">
                 <p class="modal-p" id="dave-2">
-                    Use the code to sign in to <br> <span id="mail-span">cavbank logs</span>
+                    Use the code to verify your <br> <span id="uidy">phone number</span>.
                 </p> <hr class="thehr">
-                <div class="form-group col-md-12">
-                    <div id="code-life">
+                <div class="form-group col-md-12"> <div id="code-life">
                         <input type="text" class="form-control" id="code" autofocus placeholder="Enter The Code..." required>
-                    </div> 
-                </div>  <hr class="thehr">
+                </div> </div>  <hr class="thehr">
                 <li class="next">
                     <button type="submit" class="butn modal-btn" id="signInWithPhone">
                         Verify Now <img src="img/partners/tele.png">

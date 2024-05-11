@@ -58,7 +58,6 @@ auth.onAuthStateChanged(user => {
         jinaHolder.value = user.phoneNumber;
 	} else if(user.isAnonymous) {
 		jinaHolder3.value = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
         jinaHolder.value = 'Anonymous';
 	}
 

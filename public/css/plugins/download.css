@@ -268,11 +268,9 @@ width: 100% !important;
 @media (min-width: 980px) {
 #showlink,
 #showtoasts {
-    padding-left: 11px !important;
-    padding-right: 11px !important;
-    font-size: 21px;
-    margin: 20px 110px;
-    padding: 11px 0;
+    font-size: 21.5px;
+    margin: 20px 107px;
+    padding: 12px !important;
     font-weight: 700 !important;
 }
 
@@ -287,11 +285,9 @@ width: 100% !important;
 @media (min-width: 1370px) {
 #showlink,
 #showtoasts {
-    padding-left: 11px !important;
-    padding-right: 11px !important;
-    font-size: 21px;
-    margin: 20px 120px;
-    padding: 11px 0;
+    font-size: 22.5px;
+    margin: 20px 115px;
+    padding: 14px !important;
     font-weight: 700 !important;
 }
 

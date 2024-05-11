@@ -8,7 +8,6 @@ var firebaseConfig = {
 	measurementId: "G-92W04T18VQ"
 };
 firebase.initializeApp(firebaseConfig);
-var theWebsite = 'https://www.cavbank.com/index';
 
 const theId = document.getElementById('the-id');
 const theDate = document.getElementById('the-date');
@@ -54,11 +53,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder.value = user.phoneNumber;
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
-	} else if(user.isAnonymous) {
-		jinaHolder.value = 'Anonymous';
-		jinaHolder3.value = 'Anonymous';
-		vpnNav.innerHTML = 'Anonymous';
-	}
+	} 
 
 	theId.innerHTML = user.uid;
 	let theDatez2 = new Date(user.metadata.b * 1);
