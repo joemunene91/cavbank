@@ -57,7 +57,7 @@ const vpnNav = document.getElementById('vpn-nav');
 
 
 if(!window.location.href.includes('vbank')){
-	if(!window.location.href.includes('5500')) {
+	if(!window.location.href.includes('5501')) {
 		window.location.assign('index')
 	}
 }

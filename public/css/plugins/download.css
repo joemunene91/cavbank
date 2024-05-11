@@ -308,7 +308,7 @@ width: 100% !important;
 @media (max-width: 480px) {
   #showlink,
   #showtoasts {
-      padding: 10px !important;
+      padding: 10px 9px !important;
       font-size: 19px;
       margin: 12px !important;
   }
@@ -317,7 +317,7 @@ width: 100% !important;
 @media (max-width: 420px) {
   #showlink,
   #showtoasts {
-      padding: 9px !important;
+      padding: 9px 8px !important;
       font-size: 18.5px;
       margin: 11px !important;
   }
@@ -325,7 +325,7 @@ width: 100% !important;
 @media (max-width: 400px) {
   #showlink,
   #showtoasts {
-      padding: 7px !important;
+      padding: 8px 6px !important;
       font-size: 18px;
       margin: 9px !important;
   }
@@ -333,7 +333,7 @@ width: 100% !important;
 @media (max-width: 380px) {
   #showlink,
   #showtoasts {
-      padding: 6px !important;
+      padding: 6px 4.5px !important;
       font-size: 17.5px;
       margin: 8px !important;
   }

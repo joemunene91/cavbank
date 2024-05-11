@@ -1377,7 +1377,7 @@ td {
 @media (max-width: 400px) {
   #showlink,
   #showtoasts {
-      padding: 8px !important;
+      padding: 8px 7px !important;
       font-size: 18px;
       margin: 12px !important;
   }
@@ -1385,7 +1385,7 @@ td {
 @media (max-width: 380px) {
   #showlink,
   #showtoasts {
-      padding: 7px !important;
+      padding: 7px 5.5px !important;
       font-size: 17.5px;
       margin: 10px !important;
   }
@@ -2074,13 +2074,14 @@ td {
   right: 24%;
   font-size: 22.7px !important;
   opacity: 1 !important;
+  letter-spacing: 0.85px !important;
   padding: 9px 0 !important;
   cursor: pointer !important;
 }
 #settings img {
   width: 33px !important;
   height: 33px !important;
-  margin: -5px auto -3px 3px !important;
+  margin: -5px auto -3px 5px !important;
   border-radius: 3px;
 }
 #canvas2 {
@@ -2550,7 +2551,7 @@ ul.countdown li p {
 }
 
 #usage-p {
-  margin-bottom: -12px !important;
+  margin-bottom: -15px !important;
 }
 
  
