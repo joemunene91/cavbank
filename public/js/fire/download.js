@@ -51,6 +51,8 @@ const myHr = document.getElementById('hr');
 
 const signImg = document.getElementById('sign-img');
 
+const contH4 = document.getElementById('cont-h4');
+
 const vpnNav = document.getElementById('vpn-nav');
 
 
@@ -92,6 +94,7 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent();
 		}
 
+		contH4.innerHTML = theaddress.substring(0, 12);
 		jinaHolder.value = theaddress;
 		jinaHolder2.innerHTML = user.email;
 		jinaHolder3.value = theaddress;

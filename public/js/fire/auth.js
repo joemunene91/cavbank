@@ -47,6 +47,8 @@ const signImg = document.getElementById('sign-img');
 
 const vpnNav = document.getElementById('vpn-nav');
 
+const contH4 = document.getElementById('cont-h4');
+
 const auth = firebase.auth();
 
 auth.onAuthStateChanged(user => {
@@ -72,6 +74,7 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent(); 
 		}
 
+		contH4.innerHTML = theaddress.substring(0, 12);
 		jinaHolder3.value = theaddress;
 	} else if(user.phoneNumber) {
 		jinaHolder3.value = user.phoneNumber;

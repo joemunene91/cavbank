@@ -28,6 +28,8 @@ const theIP = document.getElementById('the-ip');
 
 const vpnNav = document.getElementById('vpn-nav');
 
+const contH4 = document.getElementById('cont-h4');
+
 const auth = firebase.auth();
 
 
@@ -49,6 +51,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = theaddress.substring(0, 12);
         jinaHolder.value = theaddress.substring(0, 12);
 		vpnNav.innerHTML = theaddress.substring(0, 12);
+		contH4.innerHTML = theaddress.substring(0, 12);
 	} else if(user.phoneNumber) {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
