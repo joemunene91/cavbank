@@ -56,10 +56,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
 		thePerson = user.phoneNumber;
-	} else if(user.isAnonymous) {
-		jinaHolder3.value = 'Anonymous';
-		thePerson = 'Anonymous';
-	}
+	} 
 
 	if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
 		for (var i = 0; i < (JSON.parse(localStorage.getItem('banklogs'))).length; i++) {

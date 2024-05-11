@@ -42,7 +42,6 @@ const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
 const signGoogle = document.getElementById('signGoogle');
-const signAnony = document.getElementsByClassName('anon-id')[0];
 
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
@@ -97,9 +96,7 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent(); $('#emailModal').modal('show');
 		} else if(!user.email && user.phoneNumber) {
 			emailAbsent(); $('#emailModal').modal('show');
-		} else if(user.isAnonymous) {
-			anonPresent(); $('#vpnModal').modal('show');
-		}
+		} 
 	} 
 });
 
@@ -111,6 +108,7 @@ phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
 signGoogle.addEventListener('click', googleShow);
 
+icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
 yahooID.addEventListener('click', yahooShow);
 
@@ -162,6 +160,19 @@ function googleShow() {
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
 	signUp.innerHTML = `Verify Now <img src="img/partners/google.png">`
+}
+
+function icloudShow() {
+	inType.innerHTML = 'ICLOUD LOGIN';
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">icloud inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
+
+	mailField.setAttribute('type', 'email'); 
+	theFlag7.style.display = 'none'; 
+	mailField.value = '@icloud.com';
+	mailField.style.letterSpacing = '1.5px';
+	mailField.style.textAlign = 'right';
+	signUp.innerHTML = `Verify Now <img src="img/partners/cloud.png">`
 }
 
 function yahooShow() {
@@ -221,21 +232,6 @@ function noneAbsent() {
 	} 
 }
 
-function anonPresent() {
-	theId.innerHTML = auth.currentUser.uid;
-	let theDatez2 = new Date(auth.currentUser.metadata.b * 1); let theDatez = theDatez2.toString();
-	let therealDate = theDatez.substring(theDatez.indexOf('(') + 1).replace(' Time)', '');
-	theDate.innerHTML = theDatez.replace('2023', '').split('(')[0];
-	labelDate.innerHTML = `Time ID: (${therealDate})`;
-
-	fetch('https://ipapi.co/json/').then(function(response) {return response.json()}).then(function(data) {
-		labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
-		theIP.innerHTML = ` ${data.region},  ${data.org}.`;
-	});
-
-	jinaHolder.value = 'Anonymous';
-}
-
 function emailAbsent() {
 	inType.innerHTML = `${(auth.currentUser.phoneNumber).replace('+', '')}`;
 	save1.innerHTML = ` You have signed in as: <br> <span id="uidy" style="letter-spacing: 1px !important">
@@ -272,7 +268,7 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
 
 		auth.onAuthStateChanged(user => {
-			if(user && !user.isAnonymous) {  
+			if(user) {  
 				const theUser = auth.currentUser;
 				theUser.linkWithCredential(credential).then(() => {
 					theUser.updateProfile({
@@ -330,7 +326,7 @@ const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(yahooProvider).then(() => {
 				theUser.updateProfile({
@@ -351,7 +347,7 @@ const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(googleProvider).then(() => {
 				theUser.updateProfile({
@@ -367,21 +363,6 @@ const signInWithGoogle = () => {
 		}
 	});
 };
-
-
-const signInAnony = () => {
-	auth.signInAnonymously().then(() => {
-		anonPresent();
-		$('#exampleModal').modal('show');	
-	}).catch(error => {
-		var shortCutFunction = 'success';
-		var msg = `${error.message}`;
-		toastr.options =  { closeButton: true, debug: false, newestOnTop: true, progressBar: true,
-		positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
-		var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
-	});
-};
-signAnony.addEventListener("click", signInAnony);
 
 
 document.getElementById("thebodyz").oncontextmenu = function() {
@@ -456,7 +437,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 	var credential = new firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
 	auth.onAuthStateChanged(user1 => {
-		if(user1 && !user1.isAnonymous) { 
+		if(user1) { 
 			auth.currentUser.linkWithCredential(credential).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `Login Success: <br> <hr class="to-hr hr15-bot"> ${email} <hr class="hr10-nil">`;

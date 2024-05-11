@@ -3,12 +3,6 @@ var toastz = 0;
 
 var toastbtc = '';
 
-var closeSave = document.getElementById('close-save');
-var closeExam = document.getElementById('close-exam');
-
-var paidLogs = false;
-
-
 if (localStorage.getItem('banklogs') && (JSON.parse(localStorage.getItem('banklogs')).length) > 0) {
     if(JSON.parse(localStorage.getItem('banklogs')).length == 1) {
         toast = localStorage.getItem('banktotal');
@@ -67,8 +61,6 @@ $(toastbut).click(function() {
         positionClass: 'toast-top-full-width',preventDuplicates: true, timeOut: 10000 };
     if (!msg) { msg = getMessage() }
     var $toast = toastr[shortCutFunction](msg, title);$toastlast = $toast;
-    paidLogs = true;
-    closeExam.addEventListener('click', closeModals);
 });
 
 
@@ -79,20 +71,4 @@ $(savebut).click(function() {
         positionClass: 'toast-top-full-width',preventDuplicates: true, timeOut: 10000 };
     if (!msg) { msg = getMessage() }
     var $toast = toastr[shortCutFunction](msg, title);$toastlast = $toast;
-    paidLogs = true;
-    closeSave.addEventListener('click', closeModals);
 });
-
-function closeModals() {        
-    if(paidLogs) {
-        setTimeout(() => {
-            $('#emailModal').modal('show');
-
-            $('#exampleModal').modal('hide');
-            $('#saveModal').modal('hide');
-            $('#contactModal').modal('hide');
-            $('#vpnModal').modal('hide');
-        }, 1800);
-        paidLogs = false;
-    }
-}

@@ -9,7 +9,6 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-
 const theId = document.getElementById('the-id');
 const theDate = document.getElementById('the-date');
 const labelDate = document.getElementById('label-date');
@@ -56,10 +55,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
         jinaHolder.value = user.phoneNumber;
-	} else if(user.isAnonymous) {
-		jinaHolder3.value = 'Anonymous';
-        jinaHolder.value = 'Anonymous';
-	}
+	} 
 
 	theId.innerHTML = user.uid;
 	let theDatez2 = new Date(user.metadata.b * 1);

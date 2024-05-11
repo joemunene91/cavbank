@@ -116,18 +116,7 @@ auth.onAuthStateChanged(user => {
 			Phone: <span id="mail-span" style="letter-spacing: 1px !important">${user.phoneNumber}</span>. <br>
 			<span id="uidy">${theDevicez}</span>. 
 		`;
-	} else if(user.isAnonymous) {
-		jinaHolder.value = 'Download PDF';
-		jinaHolder2.innerHTML = 'www.cavbank.com';
-		jinaHolder3.value = 'Anonymous';
-		theTitle.innerHTML = 'Download PDF';
-		
-		anonPresent();
-		emailP.innerHTML = `
-			Browser ID: <span id="mail-span" style="letter-spacing: 0.5px !important">${platform.name}</span>. <br>
-			<span id="uidy">${theDevicez}</span>. 
-		`;
-	}
+	} 
 	
 
 	theId.innerHTML = user.uid;
@@ -179,15 +168,11 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
  		const theUser = auth.currentUser;
 
-		if(theUser.isAnonymous) {
-			auth.signInWithCredential(credential).then(() => { $('#verifyModal').modal('hide'); emailAbsent() })
-		} else {
-			theUser.linkWithCredential(credential).then(() => {
-				theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
-					window.location.assign('verify');
-				});
+		theUser.linkWithCredential(credential).then(() => {
+			theUser.updateProfile({phoneNumber: theUser.providerData[0].phoneNumber}).then(() => { 
+				window.location.assign('verify');
 			});
-		}
+		});
 	}
 
 	if(email.includes('@')) {
@@ -229,49 +214,30 @@ const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
  	const theUser = auth.currentUser;
 
-	if(theUser.isAnonymous) {
-		auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
-	} else {
-		theUser.linkWithPopup(yahooProvider).then(() => {
-			theUser.updateProfile({
-				displayName: theUser.providerData[0].displayName, 
-				photoURL: theUser.providerData[0].photoURL
-			}).then(() => { window.location.assign('verify') });
-		});
-	}
+	theUser.linkWithPopup(yahooProvider).then(() => {
+		theUser.updateProfile({
+			displayName: theUser.providerData[0].displayName, 
+			photoURL: theUser.providerData[0].photoURL
+		}).then(() => { window.location.assign('verify') });
+	});
 };
 
 const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 	const theUser = auth.currentUser;
 
-	if(theUser.isAnonymous) {
-		auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 
-	} else {
-		theUser.linkWithPopup(googleProvider).then(() => {
-			theUser.updateProfile({
-				displayName: theUser.providerData[0].displayName, 
-				photoURL: theUser.providerData[0].photoURL
-			}).then(() => { window.location.assign('verify') });
-		});
-	}
+	theUser.linkWithPopup(googleProvider).then(() => {
+		theUser.updateProfile({
+			displayName: theUser.providerData[0].displayName, 
+			photoURL: theUser.providerData[0].photoURL
+		}).then(() => { window.location.assign('verify') });
+	});
 };
 
 function emailAbsent() {
 	inType.innerHTML = `${(auth.currentUser.phoneNumber).replace('+', '')}`;
 	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
 	${auth.currentUser.phoneNumber}</span> `;
-	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
-	
-	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
-	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
-	mailField.style.textAlign = 'right';
-}
-
-function anonPresent() {
-	inType.innerHTML = `Burner Mail`;
-	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
-	Anonymous ID</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
 	
 	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
