@@ -72,7 +72,6 @@ const labelP = document.getElementById('label-ip');
 const theIP = document.getElementById('the-ip');
 
 const signLogo = document.getElementById('sign-logo');
-const btnSee = document.getElementsByClassName('btn-see')[0];
 const signImg = document.getElementById('sign-img');
 
 
@@ -80,23 +79,40 @@ const icloudID = document.getElementsByClassName('icloud-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
 
-const vpnClose = document.getElementById('vpn-close');
-
 
 const auth = firebase.auth();
 
 auth.onAuthStateChanged(user => {
 	if(user) {
-		if(user.email && user.phoneNumber) {
-			noneAbsent(); 
-			$('#vpnModal').modal('show');
-			$('#verifyModal').modal('hide'); 
-			$('#emailModal').modal('hide');
-		} else if(user.email && !user.phoneNumber) {
-			phoneAbsent(); $('#emailModal').modal('show');
-		} else if(!user.email && user.phoneNumber) {
-			emailAbsent(); $('#emailModal').modal('show');
+		theId.innerHTML = auth.currentUser.uid;
+		let theDatez2 = new Date(auth.currentUser.metadata.b * 1); let theDatez = theDatez2.toString();
+		let therealDate = theDatez.substring(theDatez.indexOf('(') + 1).replace(' Time)', '');
+		theDate.innerHTML = theDatez.replace('2023', '').split('(')[0];
+		labelDate.innerHTML = `Time ID: (${therealDate})`;
+	
+		fetch('https://ipapi.co/json/').then(function(response) {return response.json()}).then(function(data) {
+			labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
+			theIP.innerHTML = ` ${data.region},  ${data.org}.`;
+		});
+
+		if(user.phoneNumber) {
+			jinaHolder.value = user.phoneNumber
+		} else {
+			if(user.displayName) { jinaHolder.value = user.displayName } else {
+			jinaHolder.value = (user.email.substring(0, user.email.indexOf('@'))).substring(0, 11) }
+		}
+
+		if (auth.currentUser.photoURL) { 
+			vpnImg.setAttribute("src", auth.currentUser.photoURL); vpnImg.classList.add('logo-50')
 		} 
+
+		if(user.email && user.phoneNumber) {
+			$('#vpnModal').modal('show'); $('#verifyModal').modal('hide'); $('#emailModal').modal('hide');
+		} else if(user.email && !user.phoneNumber) {
+			phoneAbsent();
+		} else if(user.phoneNumber && !user.email) {
+		 	emailAbsent();
+		}
 	} 
 });
 
@@ -121,7 +137,7 @@ function phoneShow() {
 	mailField.setAttribute('pattern', '[+]{1}[0-9]{11,14}');
 	mailField.value = '+123'; mailField.style.letterSpacing = '3px';
 	theFlag7.src = `img/partners/phone.png`; theFlag7.style.display = 'block';
-	signUp.innerHTML = `Verify Now <img src="img/partners/phone.png">`;
+	signImg.setAttribute("src", 'img/partners/phone2.png'); 
 	 
 	fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
 		mailField.value = data.country_calling_code; 
@@ -136,7 +152,7 @@ function emailShow() {
 
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
-	signUp.innerHTML = `Verify Now <img src="img/partners/emails.png">`;
+	signImg.setAttribute("src", 'img/partners/email.png'); 
 
 	if (window.innerWidth > 1092) {
 		mailField.value = '';
@@ -150,7 +166,7 @@ function emailShow() {
 }
 
 function googleShow() {
-	inType.innerHTML = 'GOOGLE LOGIN';
+	inType.innerHTML = 'GMAIL LOGIN';
 	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">gmail inbox</span>. `;
 	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
 
@@ -159,7 +175,7 @@ function googleShow() {
 	mailField.value = '@gmail.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/google.png">`
+	signImg.setAttribute("src", 'img/partners/gmail.png'); 
 }
 
 function icloudShow() {
@@ -172,7 +188,7 @@ function icloudShow() {
 	mailField.value = '@icloud.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/cloud.png">`
+	signImg.setAttribute("src", 'img/partners/cloud.png'); 
 }
 
 function yahooShow() {
@@ -185,7 +201,7 @@ function yahooShow() {
 	mailField.value = '@yahoo.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signUp.innerHTML = `Verify Now <img src="img/partners/yahoo.png">`
+	signImg.setAttribute("src", 'img/partners/yahoo.png'); 
 }
 
 
@@ -197,39 +213,18 @@ function phoneAbsent() {
 	mailField.setAttribute('pattern', '[+]{1}[0-9]{11,14}');
 	mailField.value = '+123'; mailField.style.letterSpacing = '3px';
 	theFlag7.src = `img/partners/phone.png`; theFlag7.style.display = 'block';
-	signUp.innerHTML = `Verify Now <img src="img/partners/phone.png">`;
 	fetch('https://ipapi.co/json/').then(function(response) { return response.json()}).then(function(data) {
 		mailField.value = data.country_calling_code; 
 		theFlag7.src = `https://flagcdn.com/144x108/${(data.country_code).toLowerCase()}.png`;
 	});
 
-	signLogo.style.display = 'block'; btnSee.style.display = 'none';
-	if(auth.currentUser.photoURL) {signImg.setAttribute("src", auth.currentUser.photoURL) }
-	if(auth.currentUser.displayName) {
-		inType.innerHTML = (auth.currentUser.displayName).substring(0, 11);
-	} else {
+	if(auth.currentUser.photoURL) {signImg.setAttribute("src", auth.currentUser.photoURL); signLogo.classList.add('logo-50');}
+	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11) } else {
 		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);
 	}
-}
 
-function noneAbsent() {
-	theId.innerHTML = auth.currentUser.uid;
-	let theDatez2 = new Date(auth.currentUser.metadata.b * 1); let theDatez = theDatez2.toString();
-	let therealDate = theDatez.substring(theDatez.indexOf('(') + 1).replace(' Time)', '');
-	theDate.innerHTML = theDatez.replace('2023', '').split('(')[0];
-	labelDate.innerHTML = `Time ID: (${therealDate})`;
-
-	fetch('https://ipapi.co/json/').then(function(response) {return response.json()}).then(function(data) {
-		labelP.innerHTML = `IP Address: (<span>${data.ip}</span>)`; 
-		theIP.innerHTML = ` ${data.region},  ${data.org}.`;
-	});
-	vpnClose.style.display = 'none';
-	jinaHolder.value = auth.currentUser.phoneNumber;
-
-	if (auth.currentUser.photoURL) { 
-		vpnImg.setAttribute("src", auth.currentUser.photoURL); 
-		vpnImg.classList.add('logo-50')
-	} 
+	signLogo.setAttribute('data-bs-target', '#vpnModal'); $('#emailModal').modal('show'); 
+	$('#verifyModal').modal('hide');  $('#vpnModal').modal('hide');
 }
 
 function emailAbsent() {
@@ -243,8 +238,9 @@ function emailAbsent() {
 	mailField.value = '@gmail.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signLogo.style.display = 'block'; btnSee.style.display = 'none';
-	signUp.innerHTML = `Verify Now <img src="img/partners/google.png">`;
+
+	signLogo.setAttribute('data-bs-target', '#vpnModal'); $('#emailModal').modal('show'); 
+	$('#verifyModal').modal('hide');  $('#vpnModal').modal('hide');
 }
 
 
@@ -273,10 +269,9 @@ const signUpFunction = () => {
 				theUser.linkWithCredential(credential).then(() => {
 					theUser.updateProfile({
 						phoneNumber: theUser.providerData[0].phoneNumber
-					}).then(() => { 
-						noneAbsent(); $('#vpnModal').modal('show');
-						$('#verifyModal').modal('hide'); $('#emailModal').modal('hide');
-					});
+					}).then(() => {
+						$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+					})
 				});
 			} else { 
 				auth.signInWithCredential(credential).then(() => { $('#verifyModal').modal('hide'); emailAbsent() })
@@ -332,10 +327,9 @@ const signInWithYahoo = () => {
 				theUser.updateProfile({
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
-				}).then(() => { 
-					noneAbsent(); $('#vpnModal').modal('show');
-					$('#verifyModal').modal('hide'); $('#emailModal').modal('hide');
-				});
+				}).then(() => {
+					$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+				})
 			});
 		} else { 
 			auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
@@ -353,10 +347,9 @@ const signInWithGoogle = () => {
 				theUser.updateProfile({
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
-				}).then(() => { 
-					noneAbsent(); $('#vpnModal').modal('show');
-					$('#verifyModal').modal('hide'); $('#emailModal').modal('hide');
-				});
+				}).then(() => {
+					$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+				})
 			});
 		} else { 
 			auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 

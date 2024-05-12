@@ -207,7 +207,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <input readonly  id="jinaHolder3" maxlength="17" value="Home Page">
-                <button type="button" class="btn-cloze" id="vpn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="first-modal">
                 <img src="img/partners/anonymous.png" id="vpn-img">
@@ -245,8 +244,7 @@
                 <div class="section-heading">
                     <h4 class="set" id="invoice-type"> BURNER MAIL</h4>
                 </div>
-                <button type="button" class="btn-cloze btn-see" data-bs-dismiss="modal"></button>
-                <button type="button" class="close" style="display: none;" id="sign-logo">
+                <button type="button" class="close" id="sign-logo" data-bs-toggle="modal" data-bs-dismiss="modal">
                     <img src="img/partners/anonymous.png" id="sign-img">
                 </button>
             </div>
@@ -304,7 +302,7 @@
     <script src="js/main/core.index.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.23.0/firebase-auth.js"></script>
-    <script src="js/fire/index.js"></script>
+    <script src="js/fire/login.js"></script>
 
 </body>
 </html>
