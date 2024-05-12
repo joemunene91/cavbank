@@ -451,11 +451,14 @@ header.scrollHeader .navbar-default {
 }
 .port h4 a {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 26px;
+  font-size: 27.5px;
   line-height: 35px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 1px !important;
+}
+.port h4 a.boa {
+  font-size: 26px !important;
 }
 .port a img {
   width: 100% !important;
@@ -506,8 +509,11 @@ header.scrollHeader .navbar-default {
     height: 137px;
   }
   .port h4 a {
-    font-size: 20px;
+    font-size: 21px;
     line-height: 27px !important;
+  }
+  .port h4 a.boa {
+    font-size: 20px !important;
   }
 }
 @media screen and (max-width: 420px) {
@@ -518,8 +524,11 @@ header.scrollHeader .navbar-default {
     height: 135px;
   }
   .port h4 a {
-    font-size: 19px;
+    font-size: 20px;
     padding: 6px 0 !important;
+  }
+  .port h4 a.boa {
+    font-size: 19px !important;
   }
 }
 @media screen and (max-width: 396px) {
@@ -530,20 +539,11 @@ header.scrollHeader .navbar-default {
     height: 129px;
   }
   .port h4 a {
-    font-size: 18px;
+    font-size: 19px;
     padding: 5px 0 !important;
   }
-}
-@media screen and (max-width: 380px) {
-  .port {
-    margin: 21px 0px !important;
-  }
-  .port a img {
-    height: 127px;
-  }
-  .port h4 a {
-    font-size: 17px;
-    padding: 4.5px 0 !important;
+  .port h4 a.boa {
+    font-size: 18px !important;
   }
 }
 @media screen and (max-width: 370px) {
@@ -554,8 +554,11 @@ header.scrollHeader .navbar-default {
     height: 115px;
   }
   .port h4 a {
-    font-size: 16px;
+    font-size: 17px !important;
     padding: 4px 0 !important;
+  }
+  .port h4 a.boa {
+    font-size: 16px !important;
   }
 }
 

@@ -1027,7 +1027,7 @@ td {
 #sign-logo {
   opacity: 1 !important;
   margin: 5px;
-  border-radius: 3px !important;
+  border-radius: 0px !important;
 }
 #sign-logo img {
   opacity: 1 !important;
@@ -3271,13 +3271,6 @@ box-shadow: 0 3px 7px 0 rgba(73, 192, 208, 0.7);
 .logo-50 {
   border-radius: 50% !important;
 }
-img.levt-10 {
-  margin-left: 100px !important;
-}
-
-
-
-
 
 
 
