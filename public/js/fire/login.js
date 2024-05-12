@@ -41,7 +41,7 @@ if(!localStorage.getItem('banklogs-coast')) {
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
-const signGoogle = document.getElementById('signGoogle');
+const signAnony = document.getElementById('signAnony');
 
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
@@ -97,9 +97,11 @@ auth.onAuthStateChanged(user => {
 
 		if(user.phoneNumber) {
 			jinaHolder.value = user.phoneNumber
-		} else {
+		} else if(user.email) {
 			if(user.displayName) { jinaHolder.value = user.displayName } else {
 			jinaHolder.value = (user.email.substring(0, user.email.indexOf('@'))).substring(0, 11) }
+		} else if(user.isAnonymous) {
+			jinaHolder.value = 'Anonymous';
 		}
 
 		if (auth.currentUser.photoURL) { 
@@ -112,6 +114,8 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent();
 		} else if(user.phoneNumber && !user.email) {
 		 	emailAbsent();
+		} else if(user.isAnonymous) {
+
 		}
 	} 
 });
@@ -122,7 +126,6 @@ fetch('https://ipapi.co/json/').then(function(response) { return response.json()
 
 phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
-signGoogle.addEventListener('click', googleShow);
 
 icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
@@ -153,29 +156,9 @@ function emailShow() {
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
 	signImg.setAttribute("src", 'img/partners/email.png'); 
-
-	if (window.innerWidth > 1092) {
-		mailField.value = '';
-		mailField.style.textAlign = 'center';
-		mailField.setAttribute('placeholder', 'Enter your Email...');
-	} else {
-		mailField.value = '@gmail.com';
-		mailField.style.letterSpacing = '1.5px';
-		mailField.style.textAlign = 'right';
-	}
-}
-
-function googleShow() {
-	inType.innerHTML = 'GMAIL LOGIN';
-	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">gmail inbox</span>. `;
-	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
-
-	mailField.setAttribute('type', 'email'); 
-	theFlag7.style.display = 'none'; 
 	mailField.value = '@gmail.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
-	signImg.setAttribute("src", 'img/partners/gmail.png'); 
 }
 
 function icloudShow() {
@@ -218,7 +201,9 @@ function phoneAbsent() {
 		theFlag7.src = `https://flagcdn.com/144x108/${(data.country_code).toLowerCase()}.png`;
 	});
 
-	if(auth.currentUser.photoURL) {signImg.setAttribute("src", auth.currentUser.photoURL); signLogo.classList.add('logo-50');}
+	if(auth.currentUser.photoURL) {
+		signImg.setAttribute("src", auth.currentUser.photoURL); signLogo.classList.add('logo-50')
+	}
 	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11) } else {
 		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);
 	}
@@ -264,7 +249,7 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
 
 		auth.onAuthStateChanged(user => {
-			if(user) {  
+			if(user && !user.isAnonymous) {  
 				const theUser = auth.currentUser;
 				theUser.linkWithCredential(credential).then(() => {
 					theUser.updateProfile({
@@ -274,7 +259,10 @@ const signUpFunction = () => {
 					})
 				});
 			} else { 
-				auth.signInWithCredential(credential).then(() => { $('#verifyModal').modal('hide'); emailAbsent() })
+				auth.signInWithCredential(credential).then(() => { 
+					$('#verifyModal').modal('hide'); 
+					emailAbsent() 
+				})
 			}
 		});
 	}
@@ -321,18 +309,21 @@ const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
 	auth.onAuthStateChanged(user => {
-		if(user) {  
+		if(user && !user.isAnonymous) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(yahooProvider).then(() => {
 				theUser.updateProfile({
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
 				}).then(() => {
-					$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+					$('#verifyModal').modal('hide'); 
+					$('#vpnModal').modal('hide');
 				})
 			});
 		} else { 
-			auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
+			auth.signInWithPopup(yahooProvider).then(() => { 
+				phoneAbsent() 
+			}) 
 		}
 	});
 };
@@ -341,21 +332,38 @@ const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 
 	auth.onAuthStateChanged(user => {
-		if(user) {  
+		if(user && !user.isAnonymous) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(googleProvider).then(() => {
 				theUser.updateProfile({
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
 				}).then(() => {
-					$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+					$('#verifyModal').modal('hide'); 
+					$('#vpnModal').modal('hide');
 				})
 			});
 		} else { 
-			auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 
+			auth.signInWithPopup(googleProvider).then(() => { 
+				phoneAbsent() 
+			}) 
 		}
 	});
 };
+
+
+
+const signInAnony = () => {
+	auth.signInAnonymously().then(() => {
+		$('#vpnModal').modal('show');
+	}).catch(error => {
+		var shortCutFunction = 'success'; var msg = `${error.message}`;
+		toastr.options =  { closeButton: true, debug: false, newestOnTop: true, progressBar: true,
+			positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
+		var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
+	});
+};
+signAnony.addEventListener("click", signInAnony);
 
 
 document.getElementById("thebodyz").oncontextmenu = function() {
@@ -430,7 +438,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 	var credential = new firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
 	auth.onAuthStateChanged(user1 => {
-		if(user1) { 
+		if(user1 && !user1.isAnonymous) { 
 			auth.currentUser.linkWithCredential(credential).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `Login Success: <br> <hr class="to-hr hr15-bot"> ${email} <hr class="hr10-nil">`;
