@@ -446,7 +446,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 				var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
 			})
 			.then(() => {setTimeout(() => {if(window.location.href.includes('@')) {
-				window.location.assign('index') 
+				window.location.assign('home') 
 			}}, 600) })
 		} 
 	});
