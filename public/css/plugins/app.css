@@ -1052,6 +1052,20 @@ td {
 }
 
 
+#con-logo {
+  opacity: 1 !important;
+  margin: 5px;
+  border-radius: 6px !important;
+}
+#con-logo img {
+  opacity: 1 !important;
+  border-radius: 6px !important;
+  border: none !important;
+  width: 60px !important;
+  height: 60px !important;
+}
+
+
 
 @media (max-width: 576px) {
   #modal-amount,
@@ -1073,6 +1087,10 @@ td {
     height: 57px !important;
   }
   #ver-logo img {
+    width: 57px !important;
+    height: 57px !important;
+  }
+  #con-logo img {
     width: 57px !important;
     height: 57px !important;
   }

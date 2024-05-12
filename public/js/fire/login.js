@@ -75,7 +75,7 @@ const signLogo = document.getElementById('sign-logo');
 const signImg = document.getElementById('sign-img');
 
 
-const icloudID = document.getElementsByClassName('icloud-id')[0];
+const anonID = document.getElementsByClassName('anon-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
 
@@ -127,7 +127,6 @@ fetch('https://ipapi.co/json/').then(function(response) { return response.json()
 phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
 
-icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
 yahooID.addEventListener('click', yahooShow);
 
@@ -161,18 +160,6 @@ function emailShow() {
 	mailField.style.textAlign = 'right';
 }
 
-function icloudShow() {
-	inType.innerHTML = 'ICLOUD LOGIN';
-	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">icloud inbox</span>. `;
-	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
-
-	mailField.setAttribute('type', 'email'); 
-	theFlag7.style.display = 'none'; 
-	mailField.value = '@icloud.com';
-	mailField.style.letterSpacing = '1.5px';
-	mailField.style.textAlign = 'right';
-	signImg.setAttribute("src", 'img/partners/cloud.png'); 
-}
 
 function yahooShow() {
 	inType.innerHTML = 'YAHOO LOGIN';
@@ -364,6 +351,7 @@ const signInAnony = () => {
 	});
 };
 signAnony.addEventListener("click", signInAnony);
+anonID.addEventListener("click", signInAnony);
 
 
 document.getElementById("thebodyz").oncontextmenu = function() {

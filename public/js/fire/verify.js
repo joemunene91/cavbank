@@ -111,7 +111,15 @@ auth.onAuthStateChanged(user => {
 		emailAbsent();
 		wouldPa.innerHTML = `Bank log files will be sent <br> to your phone number.`;
 		wildPa.innerHTML = `<span style="letter-spacing: 1px !important">${user.phoneNumber}</span>.`;
-	} 
+	} else if(user.isAnonymous) {
+		jinaHolder3.value = 'Verify Mail';
+		jinaHolder.value = 'Verify Mail';
+		jinaHolder2.innerHTML = 'www.cavbank.com';
+
+		anonPresent();
+		wouldPa.innerHTML = `Bank log files will be sent <br> to your phone number.`;
+		// wildPa.innerHTML = `<span style="letter-spacing: 1px !important">${user.phoneNumber}</span>.`;
+	}
 
 	if(user.uid){
 		theId.innerHTML = user.uid;
@@ -122,7 +130,6 @@ auth.onAuthStateChanged(user => {
 		labelDate.innerHTML = `Time ID: (${therealDate})`;
 	}	
 });
-
 
 function sendEmail() {
 	auth.currentUser.sendEmailVerification();
@@ -208,25 +215,31 @@ theLifes.addEventListener('click', mailField.focus());
 const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
  	const theUser = auth.currentUser;
-
-	theUser.linkWithPopup(yahooProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(yahooProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(yahooProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 	const theUser = auth.currentUser;
-
-	theUser.linkWithPopup(googleProvider).then(() => {
-		theUser.updateProfile({
-			displayName: theUser.providerData[0].displayName, 
-			photoURL: theUser.providerData[0].photoURL
-		}).then(() => { window.location.assign('verify') });
-	});
+	if(theUser.isAnonymous) {
+		auth.signInWithPopup(googleProvider).then(() => { phoneAbsent() }) 
+	} else {
+		theUser.linkWithPopup(googleProvider).then(() => {
+			theUser.updateProfile({
+				displayName: theUser.providerData[0].displayName, 
+				photoURL: theUser.providerData[0].photoURL
+			}).then(() => { window.location.assign('verify') });
+		});
+	}
 };
 
 function emailAbsent() {
@@ -234,7 +247,16 @@ function emailAbsent() {
 	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
 	${auth.currentUser.phoneNumber}</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
-	
+	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
+	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
+	mailField.style.textAlign = 'right';
+}
+
+function anonPresent() {
+	inType.innerHTML = `Burner Mail`;
+	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
+	Anonymous ID</span> `;
+	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
 	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
 	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
@@ -243,7 +265,6 @@ function emailAbsent() {
 function phoneAbsent() {
 	save1.innerHTML = ` You have signed in as: <br> <span id="uidy">${auth.currentUser.email}</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">phone number</span> <br> to complete your login.`;
-
 	mailField.setAttribute('type', 'tel'); mailField.style.textAlign = 'left'; 
 	mailField.setAttribute('pattern', '[+]{1}[0-9]{11,14}');
 	mailField.value = '+123'; mailField.style.letterSpacing = '3px';
@@ -252,7 +273,6 @@ function phoneAbsent() {
 		mailField.value = data.country_calling_code; 
 		theFlag7.src = `https://flagcdn.com/144x108/${(data.country_code).toLowerCase()}.png`;
 	});
-
 	if(auth.currentUser.photoURL) {signImg.setAttribute("src", auth.currentUser.photoURL) }
 	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11);} else {
 	inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11)}
