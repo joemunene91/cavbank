@@ -117,8 +117,8 @@ auth.onAuthStateChanged(user => {
 		jinaHolder2.innerHTML = 'www.cavbank.com';
 
 		anonPresent();
-		wouldPa.innerHTML = `Bank log files will be sent <br> to your phone number.`;
-		// wildPa.innerHTML = `<span style="letter-spacing: 1px !important">${user.phoneNumber}</span>.`;
+		wouldPa.innerHTML = `Bank logins will be saved <br> as a PDF file on this: `;
+		wildPa.innerHTML = `<span style="letter-spacing: 0.5px !important">${theDevicez}</span>.`;
 	}
 
 	if(user.uid){
