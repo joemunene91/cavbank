@@ -33,9 +33,9 @@ var thePerson = '';
 const auth = firebase.auth();
 
 if(platform.manufacturer !== null) {
-	var theDevicez = `${platform.manufacturer} ${platform.product}, ${platform.os}`;
+	var theDevicez = `${platform.manufacturer} ${platform.product}`;
 } else { 
-	var  theDevicez = `${platform.os} Device`;
+	var  theDevicez = `${platform.os}`;
 }
 
 

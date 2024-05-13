@@ -36,7 +36,7 @@ if(localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklo
                 <hr id="hr-pend">
                 <span>${(items[i].balance).replace('Balance: ','')}</span> 
             </td>
-            <td id=${'name-on-table' + items.indexOf(items[i])} style="filter: blur(0px);"></td>  
+            <td id=${'name-on-table' + items.indexOf(items[i])} style="filter: blur(0px); white-space: normal !important;"></td>  
             <td>${items[i].account}</td>
             <td>${(items[i].price).replace('Price: ', '')}</td>
             <td>${items[i].info1}</td>
