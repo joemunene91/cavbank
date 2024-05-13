@@ -455,10 +455,7 @@ header.scrollHeader .navbar-default {
   line-height: 35px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-}
-.port h4 a.boa {
-  font-size: 26px !important;
+  letter-spacing: 1.8px !important;
 }
 .port a img {
   width: 100% !important;
@@ -512,9 +509,6 @@ header.scrollHeader .navbar-default {
     font-size: 21px;
     line-height: 27px !important;
   }
-  .port h4 a.boa {
-    font-size: 20px !important;
-  }
 }
 @media screen and (max-width: 420px) {
   .port {
@@ -526,9 +520,6 @@ header.scrollHeader .navbar-default {
   .port h4 a {
     font-size: 20px;
     padding: 6px 0 !important;
-  }
-  .port h4 a.boa {
-    font-size: 19px !important;
   }
 }
 @media screen and (max-width: 396px) {
@@ -542,9 +533,6 @@ header.scrollHeader .navbar-default {
     font-size: 19px;
     padding: 5px 0 !important;
   }
-  .port h4 a.boa {
-    font-size: 18px !important;
-  }
 }
 @media screen and (max-width: 370px) {
   .port {
@@ -556,9 +544,6 @@ header.scrollHeader .navbar-default {
   .port h4 a {
     font-size: 17px !important;
     padding: 4px 0 !important;
-  }
-  .port h4 a.boa {
-    font-size: 16px !important;
   }
 }
 

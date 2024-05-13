@@ -254,8 +254,8 @@ function emailAbsent() {
 
 function anonPresent() {
 	inType.innerHTML = `Burner Mail`;
-	save1.innerHTML = ` You have signed in as: <span id="uidy" style="letter-spacing: 1px !important">
-	Anonymous ID</span> `;
+	save1.innerHTML = ` You have signed in with: <br> <span id="uidy" style="letter-spacing: 1px !important">
+	${theDevicez}</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
 	mailField.setAttribute('type', 'email'); theFlag7.style.display = 'none'; 
 	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
