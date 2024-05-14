@@ -74,11 +74,9 @@ auth.onAuthStateChanged(user => {
 	}
 
 	if (user.photoURL) {
-		logoHolder.setAttribute("src", user.photoURL);
-		logoHolder.classList.add('logo-50');
-		vpnHolder.setAttribute("src", user.photoURL);
-		vpnHolder.classList.add('logo-50');
-		signImg.setAttribute("src", user.photoURL);
+		logoHolder.setAttribute("src", user.photoURL); logoHolder.classList.add('logo-50');
+		vpnHolder.setAttribute("src", user.photoURL); vpnHolder.classList.add('logo-50');
+		signImg.setAttribute("src", user.photoURL); signImg.classList.add('logo-50');
 	} 
 
 	if(user.email) {

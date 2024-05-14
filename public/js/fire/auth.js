@@ -51,12 +51,6 @@ const contH4 = document.getElementById('cont-h4');
 
 const auth = firebase.auth();
 
-if(platform.manufacturer !== null) {
-	var theDevicez = `${platform.manufacturer} ${platform.product}, ${platform.os}`;
-} else { 
-	var  theDevicez = `${platform.os} Device`;
-}
-
 auth.onAuthStateChanged(user => {
 	if(!user) {
 		window.location.assign('index');
@@ -64,7 +58,7 @@ auth.onAuthStateChanged(user => {
 
 	if (user.photoURL) {
 		vpnHolder.setAttribute("src", user.photoURL); vpnHolder.classList.add('logo-50');
-		signImg.setAttribute("src", user.photoURL);
+		signImg.setAttribute("src", user.photoURL); signImg.classList.add('logo-50');
 	} 
 
 	if(user.email) {

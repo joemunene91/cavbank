@@ -32,12 +32,6 @@ var thePerson = '';
 
 const auth = firebase.auth();
 
-if(platform.manufacturer !== null) {
-	var theDevicez = `${platform.manufacturer} ${platform.product}`;
-} else { 
-	var  theDevicez = `${platform.os}`;
-}
-
 
 auth.onAuthStateChanged(user => {
 	if(!user) {
@@ -68,8 +62,7 @@ auth.onAuthStateChanged(user => {
 		for (var i = 0; i < (JSON.parse(localStorage.getItem('banklogs'))).length; i++) {
 			document.getElementById(`name-on-table${items.indexOf(items[i])}`).innerHTML = `
 				<hr class="hr-1">
-				${thePerson} <br>
-				${theDevicez}
+				${thePerson} 
 				<hr class="hr-2"> 			
 			`; 
 		}

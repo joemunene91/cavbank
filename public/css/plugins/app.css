@@ -1479,7 +1479,7 @@ td {
   .thegold a {
       padding: 16.5px 0 !important;
       font-size: 21px !important;
-      letter-spacing: 1px !important;
+      letter-spacing: 1.5px !important;
   }
   .thegold {
       padding: 25px 10px !important;
@@ -1496,7 +1496,7 @@ td {
   .thegold {
       padding-top: 10px !important;
       padding-bottom: 10px !important;
-      letter-spacing: 0.7px !important;
+      letter-spacing: 0.92px !important;
   }
 }
 @media (max-width: 892px) {

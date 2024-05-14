@@ -21,12 +21,6 @@ ws.onmessage = (event) => {
     toastbtc = (toast / (parseFloat(stockObject.k.c))).toFixed(5);
 }
 
-if(platform.manufacturer !== null) {
-    var theDevicey = `${platform.manufacturer} ${platform.product}, ${platform.os}`;
-} else { 
-    var  theDevicey = `${platform.os} Device`
-}
-
 
 var i = -1;
 var $toastlast;

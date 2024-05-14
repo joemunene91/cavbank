@@ -249,10 +249,6 @@ function updateCartTotal() {
         modalAmount.innerHTML = `
             Send $ <span id="omanyala" class="countup">${parseInt(total).toLocaleString()}</span> 
         `;
-
-        if (window.innerWidth > 1092) {
-            document.getElementById('flex-one').style.display = 'flex';
-        } 
         
         document.getElementById('disb').style.display = 'none';
     } else if(JSON.parse(localStorage.getItem('banklogs')).length > 1) {

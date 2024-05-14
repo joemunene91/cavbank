@@ -221,7 +221,7 @@ function phoneAbsent() {
 	});
 
 	if(auth.currentUser.photoURL) {
-		signImg.setAttribute("src", auth.currentUser.photoURL); signLogo.classList.add('logo-50')
+		signImg.setAttribute("src", auth.currentUser.photoURL); signImg.classList.add('logo-50')
 	}
 	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11) } else {
 		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);
