@@ -203,16 +203,12 @@ function phoneAbsent() {
 	});
 
 	if(auth.currentUser.photoURL) {
-		signImg.setAttribute("src", auth.currentUser.photoURL); signImg.classList.add('logo-50')
-	}
+		signImg.setAttribute("src", auth.currentUser.photoURL); signImg.classList.add('logo-50')}
 	if(auth.currentUser.displayName) { inType.innerHTML = (auth.currentUser.displayName).substring(0, 11) } else {
-		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);
-	}
+		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);}
 
-	signLogo.removeAttribute('data-bs-dismiss');
-	$('#emailModal').modal('show'); 
-	$('#verifyModal').modal('hide');  
-	$('#vpnModal').modal('hide');
+	signLogo.removeAttribute('data-bs-toggle'); signLogo.removeAttribute('data-bs-dismiss');
+	$('#emailModal').modal('show'); $('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
 }
 
 function emailAbsent() {
@@ -222,16 +218,12 @@ function emailAbsent() {
 	${auth.currentUser.phoneNumber}</span> `;
 	save2.innerHTML = ` Use a burner <span id="mail-span">email address</span> <br> to complete your login.`;
 
-	mailField.setAttribute('type', 'email'); 
-	theFlag7.style.display = 'none'; 
-	mailField.value = '@gmail.com';
-	mailField.style.letterSpacing = '1.5px';
+	mailField.setAttribute('type', 'email');  theFlag7.style.display = 'none'; 
+	mailField.value = '@gmail.com'; mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
 
-	signLogo.removeAttribute('data-bs-dismiss');
-	$('#emailModal').modal('show'); 
-	$('#verifyModal').modal('hide');  
-	$('#vpnModal').modal('hide');
+	signLogo.removeAttribute('data-bs-toggle'); signLogo.removeAttribute('data-bs-dismiss');
+	$('#emailModal').modal('show'); $('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
 }
 
 
@@ -268,9 +260,11 @@ const signUpFunction = () => {
 				});
 			} else { 
 				auth.signInWithCredential(credential).then(() => { 
-					$('#vpnModal').modal('show'); 
-					$('#verifyModal').modal('hide'); 
-					$('#emailModal').modal('hide');
+					if((auth.currentUser.phoneNumber).includes('+1') || (auth.currentUser.phoneNumber).includes('+44')) {
+						$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
+					} else {
+						emailAbsent();
+					}
 				})
 			}
 		});
