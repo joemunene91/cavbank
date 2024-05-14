@@ -74,6 +74,13 @@ const theIP = document.getElementById('the-ip');
 const signLogo = document.getElementById('sign-logo');
 const signImg = document.getElementById('sign-img');
 
+const colorChange = document.getElementById('color-change');
+
+if (window.innerWidth > 592) {
+	colorChange.style.background = 'blanchedalmond';
+} 
+
+
 
 const icloudID = document.getElementsByClassName('icloud-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
