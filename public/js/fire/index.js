@@ -41,7 +41,7 @@ if(!localStorage.getItem('banklogs-coast')) {
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
-const signAnony = document.getElementById('signAnony');
+const signGoogle = document.getElementById('signGoogle');
 
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
@@ -100,9 +100,7 @@ auth.onAuthStateChanged(user => {
 		} else if(user.email) {
 			if(user.displayName) { jinaHolder.value = user.displayName } else {
 			jinaHolder.value = (user.email.substring(0, user.email.indexOf('@'))).substring(0, 11) }
-		} else if(user.isAnonymous) {
-			jinaHolder.value = 'Bank Logs';
-		}
+		} 
 
 		if (auth.currentUser.photoURL) { 
 			vpnImg.setAttribute("src", auth.currentUser.photoURL); vpnImg.classList.add('logo-50')
@@ -114,9 +112,7 @@ auth.onAuthStateChanged(user => {
 			phoneAbsent();
 		} else if(user.phoneNumber && !user.email) {
 		 	emailAbsent();
-		} else if(user.isAnonymous) {
-
-		}
+		} 
 	} 
 });
 
@@ -126,6 +122,7 @@ fetch('https://ipapi.co/json/').then(function(response) { return response.json()
 
 phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
+signGoogle.addEventListener('click', googleShow);
 
 icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
@@ -156,6 +153,27 @@ function emailShow() {
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
 	signImg.setAttribute("src", 'img/partners/email.png'); 
+
+	if (window.innerWidth > 1092) {
+		mailField.value = '';
+		mailField.setAttribute('placeholder', 'Enter your Email...')
+		// mailField.style.letterSpacing = '1.5px';
+		mailField.style.textAlign = 'center';
+	} else {
+		mailField.value = '@gmail.com';
+		mailField.style.letterSpacing = '1.5px';
+		mailField.style.textAlign = 'right';
+	} 
+}
+
+function googleShow() {
+	inType.innerHTML = 'GMAIL LOGIN';
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">gmail inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
+
+	mailField.setAttribute('type', 'email'); 
+	theFlag7.style.display = 'none'; 
+	signImg.setAttribute("src", 'img/partners/gogle.png'); 
 	mailField.value = '@gmail.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
@@ -250,7 +268,7 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
 
 		auth.onAuthStateChanged(user => {
-			if(user && !user.isAnonymous) {  
+			if(user) {  
 				const theUser = auth.currentUser;
 				theUser.linkWithCredential(credential).then(() => {
 					theUser.updateProfile({
@@ -310,7 +328,7 @@ const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(yahooProvider).then(() => {
 				theUser.updateProfile({
@@ -333,7 +351,7 @@ const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(googleProvider).then(() => {
 				theUser.updateProfile({
@@ -352,19 +370,6 @@ const signInWithGoogle = () => {
 	});
 };
 
-
-
-const signInAnony = () => {
-	auth.signInAnonymously().then(() => {
-		$('#vpnModal').modal('show');
-	}).catch(error => {
-		var shortCutFunction = 'success'; var msg = `${error.message}`;
-		toastr.options =  { closeButton: true, debug: false, newestOnTop: true, progressBar: true,
-			positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null};
-		var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
-	});
-};
-signAnony.addEventListener("click", signInAnony);
 
 
 document.getElementById("thebodyz").oncontextmenu = function() {
@@ -439,7 +444,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 	var credential = new firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
 	auth.onAuthStateChanged(user1 => {
-		if(user1 && !user1.isAnonymous) { 
+		if(user1) { 
 			auth.currentUser.linkWithCredential(credential).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `Login Success: <br> <hr class="to-hr hr15-bot"> ${email} <hr class="hr10-nil">`;
@@ -459,7 +464,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 				var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
 			})
 			.then(() => {setTimeout(() => {if(window.location.href.includes('@')) {
-				window.location.assign('home') 
+				window.location.assign('index') 
 			}}, 600) })
 		} 
 	});

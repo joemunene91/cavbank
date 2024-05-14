@@ -62,15 +62,14 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
 		thePerson = user.phoneNumber;
-	} else if(user.isAnonymous) {
-		thePerson = theDevicez;
-	}
+	} 
 
 	if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
 		for (var i = 0; i < (JSON.parse(localStorage.getItem('banklogs'))).length; i++) {
 			document.getElementById(`name-on-table${items.indexOf(items[i])}`).innerHTML = `
 				<hr class="hr-1">
-				${thePerson}
+				${thePerson} <br>
+				${theDevicez}
 				<hr class="hr-2"> 			
 			`; 
 		}
