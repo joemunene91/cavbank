@@ -227,7 +227,7 @@ section .dataTables_wrapper dataTables_length {
 
 
 td.burro {
-    filter: blur(3px) !important;
+    filter: blur(2.2px) !important;
 }
 
   
@@ -246,11 +246,11 @@ td.burro {
 
 hr.hr-1 {
     margin-top: 1px !important;
-    margin-bottom: 5px !important;
+    margin-bottom: 10px !important;
 }
 hr.hr-2 {
     margin-bottom: 1px !important;
-    margin-top: 5px !important;
+    margin-top: 10px !important;
 }
 
 
