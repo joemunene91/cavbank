@@ -32,12 +32,6 @@ var thePerson = '';
 
 const auth = firebase.auth();
 
-if(platform.manufacturer !== null) {
-	var theDevicez = `${platform.manufacturer} ${platform.product} ${platform.os}`;
-} else { 
-	var  theDevicez = `${platform.os}`;
-}
-
 auth.onAuthStateChanged(user => {
 	if(!user) {
 		window.location.assign('index');
@@ -61,10 +55,7 @@ auth.onAuthStateChanged(user => {
 		jinaHolder3.value = user.phoneNumber;
 		vpnNav.innerHTML = user.phoneNumber;
 		thePerson = user.phoneNumber;
-	} else if(user.isAnonymous) {
-		jinaHolder3.value = user.phoneNumber;
-		thePerson = theDevicez;
-	}
+	} 
 
 	if (localStorage.getItem('banklogs') && ((JSON.parse(localStorage.getItem('banklogs')).length) > 0)) {
 		for (var i = 0; i < (JSON.parse(localStorage.getItem('banklogs'))).length; i++) {

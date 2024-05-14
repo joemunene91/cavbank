@@ -41,8 +41,6 @@ if(!localStorage.getItem('banklogs-coast')) {
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
-const signAnony = document.getElementById('signAnony');
-
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
 
@@ -74,14 +72,6 @@ const theIP = document.getElementById('the-ip');
 const signLogo = document.getElementById('sign-logo');
 const signImg = document.getElementById('sign-img');
 
-const colorChange = document.getElementById('color-change');
-
-if (window.innerWidth > 592) {
-	colorChange.style.background = 'blanchedalmond';
-} 
-
-
-
 const icloudID = document.getElementsByClassName('icloud-id')[0];
 const phoneID = document.getElementsByClassName('phone-id')[0];
 const yahooID = document.getElementsByClassName('yahoo-id')[0];
@@ -107,27 +97,27 @@ auth.onAuthStateChanged(user => {
 		} else if(user.email) {
 			if(user.displayName) { jinaHolder.value = user.displayName } else {
 			jinaHolder.value = (user.email.substring(0, user.email.indexOf('@'))).substring(0, 11) }
-		} else if(user.isAnonymous) {
-			jinaHolder.value = 'Bank Logs';
-		}
+		} 
 
 		if (auth.currentUser.photoURL) { 
 			vpnImg.setAttribute("src", auth.currentUser.photoURL); vpnImg.classList.add('logo-50')
 		} 
 
 		if(user.email && user.phoneNumber) {
-			$('#vpnModal').modal('show'); 
-			$('#verifyModal').modal('hide'); 
-			$('#emailModal').modal('hide');
+			$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
 		} else if(user.email && !user.phoneNumber) {
-			phoneAbsent();
+			if((user.email).includes('@gmail.com')) {
+				phoneAbsent();
+			} else {
+				$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
+			}
 		} else if(user.phoneNumber && !user.email) {
-		 	emailAbsent();
-		} else if(user.isAnonymous) {
-			$('#vpnModal').modal('show'); 
-			$('#verifyModal').modal('hide'); 
-			$('#emailModal').modal('hide');
-		}
+			if((user.phoneNumber).includes('+1') || (user.phoneNumber).includes('+44')) {
+				$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
+			} else {
+				emailAbsent();
+			}
+		} 
 	} 
 });
 
@@ -219,8 +209,10 @@ function phoneAbsent() {
 		inType.innerHTML = (auth.currentUser.email.substring(0, auth.currentUser.email.indexOf('@'))).substring(0, 11);
 	}
 
-	signLogo.setAttribute('data-bs-target', '#vpnModal'); $('#emailModal').modal('show'); 
-	$('#verifyModal').modal('hide');  $('#vpnModal').modal('hide');
+	signLogo.removeAttribute('data-bs-dismiss');
+	$('#emailModal').modal('show'); 
+	$('#verifyModal').modal('hide');  
+	$('#vpnModal').modal('hide');
 }
 
 function emailAbsent() {
@@ -236,8 +228,10 @@ function emailAbsent() {
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
 
-	signLogo.setAttribute('data-bs-target', '#vpnModal'); $('#emailModal').modal('show'); 
-	$('#verifyModal').modal('hide');  $('#vpnModal').modal('hide');
+	signLogo.removeAttribute('data-bs-dismiss');
+	$('#emailModal').modal('show'); 
+	$('#verifyModal').modal('hide');  
+	$('#vpnModal').modal('hide');
 }
 
 
@@ -261,7 +255,7 @@ const signUpFunction = () => {
 		const credential = firebase.auth.PhoneAuthProvider.credential(sentCodeId, code);
 
 		auth.onAuthStateChanged(user => {
-			if(user && !user.isAnonymous) {  
+			if(user) {  
 				const theUser = auth.currentUser;
 				theUser.linkWithCredential(credential).then(() => {
 					theUser.updateProfile({
@@ -274,8 +268,9 @@ const signUpFunction = () => {
 				});
 			} else { 
 				auth.signInWithCredential(credential).then(() => { 
+					$('#vpnModal').modal('show'); 
 					$('#verifyModal').modal('hide'); 
-					emailAbsent() 
+					$('#emailModal').modal('hide');
 				})
 			}
 		});
@@ -323,7 +318,7 @@ const signInWithYahoo = () => {
 	const yahooProvider = new firebase.auth.OAuthProvider('yahoo.com');
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(yahooProvider).then(() => {
 				theUser.updateProfile({
@@ -337,7 +332,9 @@ const signInWithYahoo = () => {
 			});
 		} else { 
 			auth.signInWithPopup(yahooProvider).then(() => { 
-				phoneAbsent() 
+				$('#vpnModal').modal('show'); 
+				$('#verifyModal').modal('hide'); 
+				$('#emailModal').modal('hide');
 			}) 
 		}
 	});
@@ -347,7 +344,7 @@ const signInWithGoogle = () => {
 	const googleProvider = new firebase.auth.GoogleAuthProvider;
 
 	auth.onAuthStateChanged(user => {
-		if(user && !user.isAnonymous) {  
+		if(user) {  
 			const theUser = auth.currentUser;
 			theUser.linkWithPopup(googleProvider).then(() => {
 				theUser.updateProfile({
@@ -366,18 +363,6 @@ const signInWithGoogle = () => {
 		}
 	});
 };
-
-const signInAnony = () => {
-	auth.signInAnonymously().then(() => {
-		$('#vpnModal').modal('show');
-	}).catch(error => {
-		var shortCutFunction = 'success'; var msg = `${error.message}`;
-		toastr.options =  {closeButton: true, debug: false, newestOnTop: true, progressBar: true,
-			positionClass: 'toast-top-full-width', preventDuplicates: true, onclick: null };
-		var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
-	});
-};
-signAnony.addEventListener("click", signInAnony);
 
 
 document.getElementById("thebodyz").oncontextmenu = function() {
@@ -452,7 +437,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 	var credential = new firebase.auth.EmailAuthProvider.credentialWithLink(email, window.location.href);
 
 	auth.onAuthStateChanged(user1 => {
-		if(user1 && !user1.isAnonymous) { 
+		if(user1) { 
 			auth.currentUser.linkWithCredential(credential).then(() => {
 				var shortCutFunction = 'success';
 				var msg = `Login Success: <br> <hr class="to-hr hr15-bot"> ${email} <hr class="hr10-nil">`;
@@ -472,7 +457,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 				var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
 			})
 			.then(() => {setTimeout(() => {if(window.location.href.includes('@')) {
-				window.location.assign('index') 
+				window.location.assign('home') 
 			}}, 600) })
 		} 
 	});
