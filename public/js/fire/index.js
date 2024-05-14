@@ -107,7 +107,9 @@ auth.onAuthStateChanged(user => {
 		} 
 
 		if(user.email && user.phoneNumber) {
-			$('#vpnModal').modal('show'); $('#verifyModal').modal('hide'); $('#emailModal').modal('hide');
+			$('#vpnModal').modal('show'); 
+			$('#verifyModal').modal('hide'); 
+			$('#emailModal').modal('hide');
 		} else if(user.email && !user.phoneNumber) {
 			phoneAbsent();
 		} else if(user.phoneNumber && !user.email) {
@@ -157,7 +159,6 @@ function emailShow() {
 	if (window.innerWidth > 1092) {
 		mailField.value = '';
 		mailField.setAttribute('placeholder', 'Enter your Email...')
-		// mailField.style.letterSpacing = '1.5px';
 		mailField.style.textAlign = 'center';
 	} else {
 		mailField.value = '@gmail.com';
@@ -274,7 +275,9 @@ const signUpFunction = () => {
 					theUser.updateProfile({
 						phoneNumber: theUser.providerData[0].phoneNumber
 					}).then(() => {
-						$('#verifyModal').modal('hide'); $('#vpnModal').modal('hide');
+						$('#vpnModal').modal('show'); 
+						$('#verifyModal').modal('hide'); 
+						$('#emailModal').modal('hide');
 					})
 				});
 			} else { 
@@ -335,8 +338,9 @@ const signInWithYahoo = () => {
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
 				}).then(() => {
+					$('#vpnModal').modal('show'); 
 					$('#verifyModal').modal('hide'); 
-					$('#vpnModal').modal('hide');
+					$('#emailModal').modal('hide');
 				})
 			});
 		} else { 
@@ -358,8 +362,9 @@ const signInWithGoogle = () => {
 					displayName: theUser.providerData[0].displayName, 
 					photoURL: theUser.providerData[0].photoURL
 				}).then(() => {
+					$('#vpnModal').modal('show'); 
 					$('#verifyModal').modal('hide'); 
-					$('#vpnModal').modal('hide');
+					$('#emailModal').modal('hide');
 				})
 			});
 		} else { 
