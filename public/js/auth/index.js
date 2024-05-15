@@ -106,17 +106,9 @@ auth.onAuthStateChanged(user => {
 		if(user.email && user.phoneNumber) {
 			$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
 		} else if(user.email && !user.phoneNumber) {
-			if((user.email).includes('@gmail.com')) {
-				phoneAbsent();
-			} else {
-				$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
-			}
+			phoneAbsent();
 		} else if(user.phoneNumber && !user.email) {
-			if((user.phoneNumber).includes('+1') || (user.phoneNumber).includes('+44')) {
-				$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
-			} else {
-				emailAbsent();
-			}
+			emailAbsent();
 		} 
 	} 
 });
@@ -260,11 +252,7 @@ const signUpFunction = () => {
 				});
 			} else { 
 				auth.signInWithCredential(credential).then(() => { 
-					if((auth.currentUser.phoneNumber).includes('+1') || (auth.currentUser.phoneNumber).includes('+44')) {
-						$('#vpnModal').modal('show');$('#verifyModal').modal('hide');$('#emailModal').modal('hide');
-					} else {
-						emailAbsent();
-					}
+					emailAbsent();
 				})
 			}
 		});
@@ -326,9 +314,7 @@ const signInWithYahoo = () => {
 			});
 		} else { 
 			auth.signInWithPopup(yahooProvider).then(() => { 
-				$('#vpnModal').modal('show'); 
-				$('#verifyModal').modal('hide'); 
-				$('#emailModal').modal('hide');
+				phoneAbsent() 
 			}) 
 		}
 	});
@@ -451,7 +437,7 @@ if (auth.isSignInWithEmailLink(window.location.href)) {
 				var $toast = toastr[shortCutFunction](msg); $toastlast = $toast;
 			})
 			.then(() => {setTimeout(() => {if(window.location.href.includes('@')) {
-				window.location.assign('home') 
+				window.location.assign('index') 
 			}}, 600) })
 		} 
 	});
