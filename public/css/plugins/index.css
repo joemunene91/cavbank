@@ -375,7 +375,7 @@ header.scrollHeader .navbar-default {
 
 @media screen and (min-width: 996px) {
   .col-lg-3 {
-    max-width: 21% !important;
+    max-width: 20% !important;
   }
 }
 @media screen and (max-width: 591px){
@@ -451,7 +451,7 @@ header.scrollHeader .navbar-default {
 }
 .port h4 a {
   color: rgba(255, 255, 255, 0.92) !important;
-  font-size: 29px;
+  font-size: 26.5px;
   line-height: 35px !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
@@ -459,7 +459,7 @@ header.scrollHeader .navbar-default {
 }
 .port a img {
   width: 100% !important;
-  height: 177px;
+  height: 173px;
 }
 @media screen and (min-width: 996px) {
   .port {

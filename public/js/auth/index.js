@@ -41,6 +41,8 @@ if(!localStorage.getItem('banklogs-coast')) {
 const mailField = document.getElementById('inputLife');
 const signUp = document.getElementById('email-phone');
 
+const signGoogle = document.getElementById('signGoogle');
+
 const phoneLog = document.getElementById('phone-log');
 const emailLog = document.getElementById('email-log');
 
@@ -119,6 +121,7 @@ fetch('https://ipapi.co/json/').then(function(response) { return response.json()
 
 phoneLog.addEventListener('click', phoneShow);
 emailLog.addEventListener('click', emailShow);
+signGoogle.addEventListener('click', googleShow);
 
 icloudID.addEventListener('click', icloudShow);
 phoneID.addEventListener('click', phoneShow);
@@ -149,6 +152,25 @@ function emailShow() {
 	mailField.setAttribute('type', 'email'); 
 	theFlag7.style.display = 'none'; 
 	signImg.setAttribute("src", 'img/partners/email.png'); 
+	if (window.innerWidth > 1092) {
+		mailField.value = '';
+		mailField.style.textAlign = 'center';
+		mailField.setAttribute('placeholder', 'Enter your Email...');
+	} else {
+		mailField.value = '@gmail.com';
+		mailField.style.letterSpacing = '1.5px';
+		mailField.style.textAlign = 'right';
+	}
+}
+
+function googleShow() {
+	inType.innerHTML = 'GMAIL LOGIN';
+	save1.innerHTML = ` A link will be sent to your <br> <span id="mail-span">gmail inbox</span>. `;
+	save2.innerHTML = ` Use the link to verify your <br> login on this page. `;
+
+	mailField.setAttribute('type', 'email'); 
+	theFlag7.style.display = 'none'; 
+	signImg.setAttribute("src", 'img/partners/gogle.png'); 
 	mailField.value = '@gmail.com';
 	mailField.style.letterSpacing = '1.5px';
 	mailField.style.textAlign = 'right';
